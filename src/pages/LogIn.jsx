@@ -7,8 +7,8 @@ function LogIn() {
             <h2 className='title'>로그인</h2>
             <form>
                 <div>
-                    <span>아이디</span>
-                    <input type='text' placeholder='아이디를 입력하세요'/>
+                    <span>이메일</span>
+                    <input type='email' placeholder='이메일을 입력하세요'/>
                 </div>
                 <div>
                     <span>비밀번호</span>

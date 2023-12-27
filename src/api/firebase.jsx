@@ -28,7 +28,7 @@ export async function signupEmail(email, password, nickname){
     try{
         const userData = await createUserWithEmailAndPassword(auth, email, password);
         const user = userData.user;
-
+        console.log(user)
         await updateProfile(user, {
             displayName : nickname
         })
