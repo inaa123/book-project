@@ -1,8 +1,31 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { logoutEmail, onUserState } from '../api/firebase';
 
 function Nav() {
+    const [user, setUser] = useState();
+
+    const navigate = useNavigate();
+
+    const login = () => {
+        navigate('/login')
+    }
+
+    const signup = () => {
+        navigate('/signup')
+    }
+
+    const logout = () => {
+        logoutEmail().then(setUser);
+    }
+
+    useEffect(() => {
+        onUserState((user) => {
+            setUser(user);
+        })
+    }, [])
+
     return (
         <HeaderContainer >
             <nav>
@@ -12,8 +35,19 @@ function Nav() {
                 </ul>
                 <h1 className='logo'><Link to='/'>ㅊㄱㅊㄱ</Link></h1>
                 <div className='userWrapper'>
-                    <button><Link to='/login'>LogIn</Link></button>
-                    <button><Link to='/signup'>SignUp</Link></button>
+                    {user ? (
+                        <>
+                            <span>{user.displayName}</span>
+                            <button className='logoutBtn' onClick={logout}>LogOut</button>
+                        </>
+                    ) : (
+                        <>
+                            <button className='loginBtn' onClick={login}>LogIn</button>
+                            <button className='signupBtn' onClick={signup}>SignUp</button>
+                        </>
+                    )}
+
+                    
                 </div>
             </nav>
         </HeaderContainer>

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {createUserWithEmailAndPassword, getAuth, signOut, updateProfile} from "firebase/auth";
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from "firebase/auth";
 import {getDatabase} from 'firebase/database';
 const firebaseConfig = {
     apiKey : process.env.REACT_APP_FIREBASE_API_KEY,
@@ -22,22 +22,45 @@ export async function loginEmail(email, password){
     }
 }
 
-//회원가입
-export async function signupEmail(email, password, nickname){
-    const auth = getAuth();
+export async function logoutEmail() {
     try{
+        await signOut(auth);
+    }catch(error){
+        console.error(error);
+    }
+}
+
+export function onUserState(callback){
+    onAuthStateChanged(auth, async(user)=> {
+        if(user){
+            try{
+                callback(user)
+            }catch(error){
+                console.error(error);
+            }
+        }else{
+            callback(null)
+        }
+    })
+}
+
+//회원가입
+export async function signupEmail(email, password, name){
+    try{
+        const auth = getAuth();
         const userData = await createUserWithEmailAndPassword(auth, email, password);
+        console.log(userData)
         const user = userData.user;
         console.log(user)
         await updateProfile(user, {
-            displayName : nickname
+            displayName : name
         })
 
         await signOut(auth);
 
-        return user
+        return {success : true}
     }catch(error){
-        console.error(error)
+        return {error : error.code}
     }
     
 }
