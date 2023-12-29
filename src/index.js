@@ -9,7 +9,6 @@ import MyBook from './pages/MyBook';
 import Phrase from './pages/Phrase';
 import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
-import AddBook from './pages/AddBook';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -25,7 +24,6 @@ const routes = createBrowserRouter([
       {path : '/signup', element : <SignUp/>},
       {path : '/mybook' , element : <MyBook/>},
       {path : '/phrase', element : <Phrase/>},
-      {path : '/mybook/addbook', element : <AddBook/>}
     ]
   }
 ])
