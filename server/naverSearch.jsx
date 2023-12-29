@@ -11,8 +11,8 @@ function naverSearch(req, res, next) {
     axios
         .get(api_url, {
             headers: {
-                'X-Naver-Client-Id': process.env.REACT_APP_NAVER_CLIENT_ID,
-                'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_SECRET_KEY,
+                'X-Naver-Client-Id': process.env.REACT_APP_CLIENT_ID,
+                'X-Naver-Client-Secret': process.env.REACT_APP_CLIENT_SECRET,
             },
         })
         .then((data) => {
