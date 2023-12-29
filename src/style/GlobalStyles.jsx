@@ -64,7 +64,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body{
         /* background-color: #0d341d; */
-        background-color: #0c4825;
+        /* background-color: #0c4825; */
     }
     .container{
         max-width : 1200px;
@@ -72,7 +72,7 @@ const GlobalStyle = createGlobalStyle`
         padding : 100px 0px;
         border-radius: 10px;
         /* background-color: #f2e9c7; */
-        background-color: #eee7c9;
+        /* background-color: #eee7c9; */
     }
 
 `
