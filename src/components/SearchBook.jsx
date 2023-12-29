@@ -23,8 +23,8 @@ function SearchBook() {
         setIsLoading(true);
         setError(null);
         try {
-            // const apiUrl = `/api/books/?query=${encodeURIComponent(keywords)}`;
-            const apiUrl = `/?query=${encodeURIComponent(keywords)}`;
+            const apiUrl = `/src/SeachBook?query=${encodeURIComponent(keywords)}`;
+            // const apiUrl = `/?query=${encodeURIComponent(keywords)}`;
             const res = await axios.get(apiUrl);
             if (res.headers['content-type']?.includes('application/json')) {
                 const { data } = res;
