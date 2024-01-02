@@ -3,7 +3,7 @@ import { Link, Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav';
 import GlobalStyle from './style/GlobalStyles';
-import SearchBook from './components/SearchBook';
+import Search from './components/Search';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Nav/>
       
       <Routes>
-        <Route path='/' element = {<SearchBook/>}/>
+        <Route path='/' element = {<Search/>}/>
       </Routes>
 
       <Outlet/>
