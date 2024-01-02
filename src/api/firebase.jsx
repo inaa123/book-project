@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from "firebase/auth";
-import {getDatabase, ref, set} from 'firebase/database';
+import {get, getDatabase, ref, set} from 'firebase/database';
 import { v4 as uuid} from 'uuid';
 
 
@@ -80,5 +80,16 @@ export async function addQuote(user, title, writer, text){
         writer,
         text
     }
-    return set(ref(database, `/quote/${id}`), postData)
+    return set(ref(database, `/quote/${user}`), postData)
+}
+
+//게시글 가져오기
+export async function getQuotes(){
+    return get(ref(database, 'quote'))
+    .then((snapshot) => {
+        if(snapshot.exists()){
+            return Object.values(snapshot.val());
+        }
+        return[]
+    })
 }
