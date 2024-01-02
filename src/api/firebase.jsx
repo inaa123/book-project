@@ -70,7 +70,7 @@ export async function signupEmail(email, password, name){
 
 //게시글 저장
 //addQuote(user, title, writer, text)
-export async function addQuote(title, writer, text){
+export async function addQuote(user, title, writer, text){
     const id = uuid(); //npm install uuid , yarn add uuid
     const postData = {
         id,
