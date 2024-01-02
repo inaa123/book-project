@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Phrase() {
+function Quotes() {
     return (
-        <div className='container'>
+        <div>
             모두의 한마디
         </div>
     )
 }
 
-export default Phrase
+export default Quotes

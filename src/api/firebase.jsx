@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase/app";
 import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from "firebase/auth";
-import {getDatabase} from 'firebase/database';
+import {getDatabase, ref, set} from 'firebase/database';
+import { v4 as uuid} from 'uuid';
+
+
 const firebaseConfig = {
     apiKey : process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain : process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -63,4 +66,18 @@ export async function signupEmail(email, password, name){
         return {error : error.code}
     }
     
+}
+
+//게시글 저장
+//addQuote(user, title, writer, text)
+export async function addQuote(title, writer, text){
+    const id = uuid(); //npm install uuid , yarn add uuid
+    const postData = {
+        id,
+        user,
+        title,
+        writer,
+        text
+    }
+    return set(ref(database, `/quote/${id}`), postData)
 }
