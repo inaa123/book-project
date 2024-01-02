@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 function WriteQuote() {
     const state = useLocation().state;
-    const userEmail = state;
+    const email = state;
 
     const [bookTitle, setBookTitle] = useState('');
     const [bookWriter, setBookWriter] = useState('');
@@ -16,7 +16,7 @@ function WriteQuote() {
         e.preventDefault();
         try{
             // await addQuote(email, bookTitle, bookWriter, bookText);
-            await addQuote(userEmail, bookTitle, bookWriter, bookText);
+            await addQuote(email, bookTitle, bookWriter, bookText);
             navigate('/quote')
         }catch(error){
             console.log(error)

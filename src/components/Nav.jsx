@@ -31,7 +31,7 @@ function Nav() {
             <nav>
                 <ul>
                     <li><Link to='/mybook'>기록함</Link></li>
-                    <li><Link to='/phrase'>한마디</Link></li>
+                    <li><Link to='/quote'>한마디</Link></li>
                 </ul>
                 <h1 className='logo'><Link to='/'>ㅊㄱㅊㄱ</Link></h1>
                 <div className='userWrapper'>

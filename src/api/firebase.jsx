@@ -36,11 +36,12 @@ export async function logoutEmail() {
 export function onUserState(callback){
     onAuthStateChanged(auth, async(user)=> {
         if(user){
-            try{
-                callback(user)
-            }catch(error){
-                console.error(error);
-            }
+            callback(user)
+            // try{
+            //     callback(user)
+            // }catch(error){
+            //     console.error(error);
+            // }
         }else{
             callback(null)
         }

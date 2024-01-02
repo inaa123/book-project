@@ -10,6 +10,7 @@ import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
 import Quotes from './pages/Quotes';
 import WriteQuote from './pages/WriteQuote';
+import DetailBook from './pages/DetailBook';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -24,6 +25,7 @@ const routes = createBrowserRouter([
       {path : '/login', element : <LogIn/>},
       {path : '/signup', element : <SignUp/>},
       {path : '/mybook' , element : <MyBook/>},
+      {path : '/book/detail', element : <DetailBook/>},
       {path : '/quote', element : <Quotes/>},
       {path : '/quote/write', element : <WriteQuote/>}
     ]
