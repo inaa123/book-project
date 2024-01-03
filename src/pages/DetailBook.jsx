@@ -7,7 +7,9 @@ function DetailBook() {
     const [user, setUser] = useState();
     const state = useLocation().state;
     const {isbn, image, title, author, publisher, discription} = state;
-    
+    const [books, setBooks] = useState([
+        
+    ]);
 
     const navigate = useNavigate();
 
@@ -17,6 +19,12 @@ function DetailBook() {
             console.log(user)
         })
     })
+
+    const onAddBook = () => {
+        if(user){
+            navigate(`/mybook/${user.uid}`)
+        }
+    }
 
     const onWriteQuote = () => {
         if(user){
@@ -47,7 +55,7 @@ function DetailBook() {
                     <p>{discription}</p>
                 </div>
             <button onClick={onWriteQuote}>한마디작성</button>
-            <button >기록함추가</button>
+            <button onClick={onAddBook} >기록함추가</button>
             </DetailPage>
             
         </div>

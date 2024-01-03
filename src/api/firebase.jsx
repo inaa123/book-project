@@ -95,3 +95,14 @@ export async function getQuotes(){
         return[]
     })
 }
+
+//addMyBook
+export async function addBooks(book, user){
+    const id = uuid();
+
+    return set(ref(database, `myBooks/${user}`), {
+        ...book,
+        id,
+        user
+    })
+}

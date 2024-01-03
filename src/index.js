@@ -25,7 +25,7 @@ const routes = createBrowserRouter([
     children : [
       {path : '/login', element : <LogIn/>},
       {path : '/signup', element : <SignUp/>},
-      {path : '/mybook' , element : <MyBook/>},
+      {path : '/mybook/:id' , element : <MyBook/>},
       {path : '/book/detail/:id', element : <DetailBook/>},
       {path : '/quote', element : <Quotes/>},
       {path : '/quote/write/:id', element : <WriteQuote/>},
