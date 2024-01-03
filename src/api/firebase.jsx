@@ -81,7 +81,7 @@ export async function addQuote(user, isbn, title, writer, text){
         writer,
         text
     }
-    return set(ref(database, `/quote/${isbn}`), postData)
+    return set(ref(database, `/quote/${id}`), postData)
 }
 
 //게시글 가져오기

@@ -14,6 +14,7 @@ function WriteQuoteBook({book}) {
                 author : book.author,
                 publisher : book.publisher,
                 description : book.description,
+
             }
         })
     }
