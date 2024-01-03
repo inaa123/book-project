@@ -1,10 +1,10 @@
 import React from 'react'
-import Search from '../components/Search'
+import SearchItem from '../components/SearchItem'
 
 function SearchBook() {
     return (
         <>
-        <Search/>
+            <SearchItem/>
         </>
     )
 }

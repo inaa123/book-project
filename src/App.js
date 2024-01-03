@@ -4,10 +4,14 @@ import './App.css';
 import Nav from './components/Nav';
 import GlobalStyle from './style/GlobalStyles';
 import Search from './components/Search';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <>
+    <QueryClientProvider client={queryClient}>
       <GlobalStyle/>
       <Nav/>
       
@@ -16,6 +20,7 @@ function App() {
       </Routes>
 
       <Outlet/>
+      </QueryClientProvider>
     </>
   );
 }

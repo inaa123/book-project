@@ -6,7 +6,7 @@ import styled from 'styled-components';
 function DetailBook() {
     const [user, setUser] = useState();
     const state = useLocation().state;
-    const {id, image, title, author, publisher, discription} = state;
+    const {isbn, image, title, author, publisher, discription} = state;
     
 
     const navigate = useNavigate();
@@ -20,10 +20,11 @@ function DetailBook() {
 
     const onWriteQuote = () => {
         if(user){
-            navigate(`/quote/write`, {
+            navigate(`/quote/write/${isbn}`, {
                 state : {
-                    email : user.email,
-                    title : state.title
+                    title : title,
+                    author : author,
+                    isbn : isbn,
                 }
             })
         }else{
@@ -45,7 +46,7 @@ function DetailBook() {
                 <div>
                     <p>{discription}</p>
                 </div>
-            <button onClick={onWriteQuote} bookItem={state}>한마디작성</button>
+            <button onClick={onWriteQuote}>한마디작성</button>
             <button >기록함추가</button>
             </DetailPage>
             

@@ -28,7 +28,7 @@ const routes = createBrowserRouter([
       {path : '/mybook' , element : <MyBook/>},
       {path : '/book/detail/:id', element : <DetailBook/>},
       {path : '/quote', element : <Quotes/>},
-      {path : '/quote/write', element : <WriteQuote/>},
+      {path : '/quote/write/:id', element : <WriteQuote/>},
       {path : '/book/search', element:<SearchBook/>}
     ]
   }

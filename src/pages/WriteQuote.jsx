@@ -1,25 +1,34 @@
-import React, { useState } from 'react'
-import { addQuote } from '../api/firebase';
+import React, { useEffect, useState } from 'react'
+import { addQuote, onUserState } from '../api/firebase';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function WriteQuote() {
-    const state = useLocation().state;
-    const email = state;
-
-    const [bookTitle, setBookTitle] = useState('');
-    const [bookWriter, setBookWriter] = useState('');
+    const [user, setUser] = useState();
     const [bookText, setBookText] = useState('');
+
+    const state = useLocation().state;
+    // const email = state;
+    const {isbn, author, title} =state;
 
     const navigate = useNavigate();
 
+    useEffect(()=>{
+        onUserState((user) => {
+            setUser(user)
+        })
+    })
+
+
+
     const onSubmit = async (e) => {
         e.preventDefault();
+        console.log(isbn)
         try{
             // await addQuote(email, bookTitle, bookWriter, bookText);
-            await addQuote(email, bookTitle, bookWriter, bookText);
+            await addQuote(user.email, isbn, title, author, bookText);
             navigate('/quote')
         }catch(error){
-            console.log(error)
+            console.error(error)
         }
     }
 
@@ -29,19 +38,9 @@ function WriteQuote() {
             <form onSubmit={onSubmit}>
                 <div className='write-box'>
                     <label>제목</label>
-                    <input 
-                        type='text'
-                        value={bookTitle}
-                        onChange={(e)=>setBookTitle(e.target.value)}
-                        required
-                    />
+                    <p>{title}</p>
                     <label>저자</label>
-                    <input 
-                        type='text'
-                        value={bookWriter}
-                        onChange={(e)=>setBookWriter(e.target.value)}
-                        required
-                    />
+                    <p>{author}</p>
                 </div>
                 <div className='write-box'>
                     <label>내용</label>
@@ -50,7 +49,10 @@ function WriteQuote() {
                         onChange={(e)=>setBookText(e.target.value)}
                     />
                 </div>
-                <button type='submit' className='submit-btn'>작성하기</button>
+                <button 
+                    type='submit' 
+                    className='submit-btn'>
+                작성하기</button>
             </form>
         </div>
     )

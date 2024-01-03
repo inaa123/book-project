@@ -1,22 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { onUserState } from '../api/firebase';
 
-function DetailBookEvent({book}) {
-    const [user, setUser] = useState();
-
-    useEffect(()=>{
-        onUserState((user)=>{
-            setUser(user);
-        })
-    })
+function WriteQuoteBook({book}) {
 
     const navigate = useNavigate();
-    const detailNavigate = () => {
-        navigate(`/book/detail/${book.isbn}`, {
+    const quoteNavigate = () => {
+        navigate(`/quote/write/${book.isbn}`, {
             state : {
-                email : user.email,
                 isbn : book.isbn,
                 title : book.title,
                 image : book.image,
@@ -28,7 +19,7 @@ function DetailBookEvent({book}) {
     }
 
     return (
-        <SearchBookList onClick={detailNavigate}>
+        <SearchBookList onClick={quoteNavigate}>
             <img src={book.image}/>
             <div className='bookWrap'>
                 <h3>{book.title}</h3>
@@ -39,7 +30,7 @@ function DetailBookEvent({book}) {
     )
 }
 
-export default DetailBookEvent
+export default WriteQuoteBook
 
 const SearchBookList = styled.div`
     display: flex;

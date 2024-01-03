@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import instance from '../api/axios';
-import styled from 'styled-components';
-import DetailBookEvent from './DetailBookEvent';
+import WriteQuoteBook from './WriteQuoteBook';
 
-function Search() {
+function SearchItem() {
     const [keywords, setKeywords] = useState('');
     const [bookList, setBookList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +41,6 @@ function Search() {
             setIsLoading(false);
         }
     };
-    
 
     return (
         <div className='container'>
@@ -63,7 +62,7 @@ function Search() {
                 <ul className='searchList'>
                     <li>
                         {Array.isArray(bookList) && bookList.map((book) => (
-                            <DetailBookEvent 
+                            <WriteQuoteBook 
                                 key={book.id} book={book}
                             />
                         ))}
@@ -71,10 +70,10 @@ function Search() {
                 </ul>
            </SearchForm>
         </div>
-    );
+    )
 }
 
-export default Search
+export default SearchItem
 
 const SearchForm = styled.div`
     display:flex;

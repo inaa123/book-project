@@ -70,17 +70,18 @@ export async function signupEmail(email, password, name){
 }
 
 //게시글 저장
-//addQuote(user, title, writer, text)
-export async function addQuote(user, title, writer, text){
-    const id = uuid(); //npm install uuid , yarn add uuid
+//addQuote(user, title, writer, text) isbn:책id
+export async function addQuote(user, isbn, title, writer, text){
+    const id = uuid(); //게시글id, npm install uuid , yarn add uuid
     const postData = {
         id,
+        isbn,
         user,
         title,
         writer,
         text
     }
-    return set(ref(database, `/quote/${user}`), postData)
+    return set(ref(database, `/quote/${isbn}`), postData)
 }
 
 //게시글 가져오기
