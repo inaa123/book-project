@@ -15,6 +15,7 @@ function WriteQuote() {
     useEffect(()=>{
         onUserState((user) => {
             setUser(user)
+            console.log(user.displayName)
         })
     })
 
@@ -22,10 +23,10 @@ function WriteQuote() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        console.log(isbn)
+        
         try{
             // await addQuote(email, bookTitle, bookWriter, bookText);
-            await addQuote(user.email, isbn, title, author, bookText);
+            await addQuote(user.email, user.displayName, isbn, title, author, bookText);
             navigate('/quote')
         }catch(error){
             console.error(error)

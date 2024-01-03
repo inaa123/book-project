@@ -20,7 +20,11 @@ function QuoteListItem({post}) {
 
     return (
         <QuoteItem onClick={onDetail}>
-            <p>{post.title}</p>
+            <div className='content'>
+                <p>{post.title}</p>
+                <p>{post.userName}</p>
+                <p>{post.text}</p>
+            </div>
         </QuoteItem>
     )
 }
@@ -28,5 +32,15 @@ function QuoteListItem({post}) {
 export default QuoteListItem
 
 const QuoteItem = styled.div`
+    display: block;
+    border : solid 1px rgba(0,0,0,0.5);
+    border-radius: 15%;
+    width : 300px;
+    height: 300px;
+    padding: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    flex-basis: 30%;
     
 `

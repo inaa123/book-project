@@ -71,12 +71,13 @@ export async function signupEmail(email, password, name){
 
 //게시글 저장
 //addQuote(user, title, writer, text) isbn:책id
-export async function addQuote(user, isbn, title, writer, text){
+export async function addQuote(user, userName, isbn, title, writer, text){
     const id = uuid(); //게시글id, npm install uuid , yarn add uuid
     const postData = {
         id,
         isbn,
         user,
+        userName,
         title,
         writer,
         text

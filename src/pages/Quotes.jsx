@@ -55,7 +55,6 @@ const QuotesContainer = styled.div`
         li{
             display: flex;
             gap: 10px;
-            border-bottom: solid 1px black;
         }
     }
 `
