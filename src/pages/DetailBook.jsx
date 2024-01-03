@@ -5,9 +5,8 @@ import styled from 'styled-components';
 
 function DetailBook() {
     const [user, setUser] = useState();
-
     const state = useLocation().state;
-
+    const {id, image, title, author, publisher, discription} = state;
     
 
     const navigate = useNavigate();
@@ -21,7 +20,12 @@ function DetailBook() {
 
     const onWriteQuote = () => {
         if(user){
-            navigate(`/quote/write`, {state : {email : user.email}})
+            navigate(`/quote/write`, {
+                state : {
+                    email : user.email,
+                    title : state.title
+                }
+            })
         }else{
             navigate(`/login`)
         }
@@ -30,7 +34,19 @@ function DetailBook() {
     return (
         <div className='container'>
             <DetailPage>
-            <button onClick={onWriteQuote}>한마디작성</button>
+                <div>
+                    <img src={image} alt={title}/>
+                </div>
+                <div>
+                    <h3>{title}</h3>
+                    <p>{author}</p>
+                    <p>{publisher}</p>
+                </div>
+                <div>
+                    <p>{discription}</p>
+                </div>
+            <button onClick={onWriteQuote} bookItem={state}>한마디작성</button>
+            <button >기록함추가</button>
             </DetailPage>
             
         </div>
@@ -41,5 +57,8 @@ function DetailBook() {
 export default DetailBook
 
 const DetailPage = styled.div`
-    
+    img{
+        max-width : 400px;
+        width: 100%;
+    }
 `
