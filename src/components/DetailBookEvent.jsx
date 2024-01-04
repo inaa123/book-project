@@ -16,7 +16,7 @@ function DetailBookEvent({book}) {
     const detailNavigate = () => {
         navigate(`/book/detail/${book.isbn}`, {
             state : {
-                email : user.email,
+                // email : user.email,
                 isbn : book.isbn,
                 title : book.title,
                 image : book.image,
