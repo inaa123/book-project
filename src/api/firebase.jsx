@@ -98,14 +98,24 @@ export async function getQuotes(){
 
 //addMyBook
 export async function addBooks(isbn, image, title, option, user){
-    const id = uuid();
-
-    return set(ref(database, `myBooks/${user}/${id}`), {
+    return set(ref(database, `myBooks/${user}/${isbn}`), {
         isbn,
         image,
         title,
         option,
-        id,
         user
     })
+}
+
+//myBook출력하기
+export async function getAllBooks(userId){
+    return get(ref(database, `myBooks/${userId}`))
+    .then((snapshot) => {
+        if(snapshot.exists()){
+            return Object.values(snapshot.val());
+        }
+        return[]
+    })
+
+    
 }
