@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { loginEmail } from '../api/firebase';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function LogIn() {
     const [email, setEmail] = useState('');
@@ -50,7 +50,10 @@ function LogIn() {
                     />
                 </div>
                 {errorMsg && <p className='errorTxt'>{errorMsg}</p>}
+                <div className='btn-wrapper'>
                 <button type='submit'>로그인</button>
+                <button><Link to='/signup'>회원가입</Link></button>
+                </div>
             </form>
         </LoginContainer>
     )

@@ -11,6 +11,8 @@ function SignUp() {
     const [psError, setPsError] = useState();
     const [emailError, setEmailError] = useState();
 
+    const [emptyInput, setEmptyInput] = useState(false);
+
     const navigate = useNavigate();
 
     const onSignUpEvent = async (e) => {
@@ -18,6 +20,11 @@ function SignUp() {
         setPsError('');
         setEmailError('');
 
+        if(!userEmail){
+            setEmailError('이메일을 입력해주세요')
+            return false
+        }
+        
         if(userPassword.length < 6){
             setPsError('비밀번호는 6글자 이상이어야 합니다!!')
             return
@@ -51,11 +58,11 @@ function SignUp() {
                         value={userEmail}
                         onChange={(e)=>setUserEmail(e.target.value)}
                     />
-                    {emailError && <p className='errorTxt'>{emailError}</p>}
+                    {emailError && <span className='errorTxt'>{emailError}</span>}
                 </div>
                 <div>
                     <span>비밀번호</span>
-                    <input 
+                    <input
                         type='password' 
                         placeholder='비밀번호를 입력하세요'
                         value={userPassword}
@@ -73,6 +80,7 @@ function SignUp() {
                     />
                 </div>
                 <button type='submit'>완료</button>
+                {emptyInput && <p>회원정보를 입력하세요!</p>}
             </form>
         </SignUpContainer>
     )
