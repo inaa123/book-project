@@ -75,7 +75,7 @@ function DetailBook() {
                     <p>{discription}</p>
                 </div>
                 <div className='btnWrapper'>
-                <select value={selected} onChange={handleSelect} required>
+                <select value={selected} onChange={handleSelect}>
                     <option value="" disabled>상태</option>
                     {selectList.map((item, index) => (
                         <option key={index} value={item.value}>{item.name}</option>
