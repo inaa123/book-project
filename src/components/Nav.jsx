@@ -27,7 +27,11 @@ function Nav() {
     }, [])
 
     const onMyBook = () => {
-        navigate(`/mybook/${user.uid}`)
+        if(user){
+            navigate(`/mybook/${user.uid}`)
+        }else{
+            navigate('/login')
+        }
     }
 
     return (
