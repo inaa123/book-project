@@ -120,10 +120,11 @@ export async function getAllBooks(userId){
 
 //state option
 export async function getStateOptionBook(option, userId){
-    console.log(option)
+
     return get(ref(database, `myBooks/${userId}`)).then((snapshot) => {
         if(snapshot.exists()){
             const allBooks = Object.values(snapshot.val());
+            console.log(allBooks)
             const filterBooks = allBooks.filter((book) => book.option === option);
             return filterBooks
         }

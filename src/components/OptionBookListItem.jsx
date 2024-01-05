@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-function OptionBookListItem({option}, {bookList}) {
+function OptionBookListItem({option, bookList}) {
+    
     return (
         <div>
-            zz
+            <p>{option}</p>
+            <p></p>
         </div>
     )
 }

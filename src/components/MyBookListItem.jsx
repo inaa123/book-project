@@ -18,7 +18,6 @@ function MyBookListItem({post}) {
     return (
         <MyBookItem onClick={moveDetailBook}>
             <img src={post.image}/>
-            {/* <img>{post.image}</img> */}
             <p>{post.title}</p>
         </MyBookItem>
     )
