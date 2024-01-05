@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 function DetailBook() {
     const [user, setUser] = useState();
-    const [isClick, setIsClick] = useState(false);
     const [selected, setSelected] = useState('');
     const state = useLocation().state;
     const {isbn, image, title, author, publisher, discription} = state;
@@ -21,7 +20,7 @@ function DetailBook() {
         onUserState((user) => {
             setUser(user)
             // console.log(user)
-            console.log(selected)
+            // console.log(selected)
         })
     })
 
@@ -30,19 +29,16 @@ function DetailBook() {
         if(!user){
             navigate('/login')
         }else{
-            try{
-                await addBooks(isbn, image, title, selected, user.uid);
-            }catch(error){
-                console.error(error);
-            }finally{
-                navigate(`/mybook/${user.uid}`)
+            if(selected){
+                try{
+                    await addBooks(isbn, image, title, selected, user.uid);
+                }catch(error){
+                    console.error(error);
+                }finally{
+                    navigate(`/mybook/${user.uid}`)
+                }
             }
         }
-        // if(user){
-        //     navigate(`/mybook/${user.uid}`)
-        // }else{
-        //      navigate('/login')
-        //  }
     }
 
     const onWriteQuote = () => {
@@ -60,34 +56,9 @@ function DetailBook() {
         
     }
 
-    // const onClickEvent = () => {
-    //     if(user){
-    //         setIsClick(!isClick)
-    //     }else{
-    //         navigate('/login')
-    //     }
-    // }
-
     const handleSelect = (e) => {
         setSelected(e.target.value);
     }
-
-    // const addMyBook = async (e) => {
-    //     e.preventDefault();
-    //     try{
-    //         await addBooks(isbn, image, title, selected, user.uid);
-    //         navigate(`/mybook/${user.uid}`, {
-    //             state : {
-    //                 isbn : isbn,
-    //                 title : title,
-    //                 image : image,
-    //                 option : selected,
-    //             }
-    //         })
-    //     }catch(error){
-    //         console.error(error);
-    //     }
-    // }
 
     return (
         <div className='container'>
@@ -104,14 +75,16 @@ function DetailBook() {
                     <p>{discription}</p>
                 </div>
                 <div className='btnWrapper'>
-                <select value={selected} onChange={handleSelect}>
-                    <option>상태</option>
+                <select value={selected} onChange={handleSelect} required>
+                    <option value="" disabled>상태</option>
                     {selectList.map((item, index) => (
                         <option key={index} value={item.value}>{item.name}</option>
                     ))}
                 </select>
                 <button onClick={onClickEvent}>기록함추가</button>
                 <button onClick={onWriteQuote}>한마디작성</button>
+                
+                {!selected && <p>상태를 선택하세요!</p>}
                 </div>
                 {/* {isClick && (
                     <select value={selected} onChange={handleSelect}>
