@@ -10,7 +10,7 @@ function DetailBook() {
     const state = useLocation().state;
     const {isbn, image, title, author, publisher, discription} = state;
 
-    const selectList = [
+     const selectList = [
         {value : "reading", name : "읽는중"},
         {value : "done", name : "읽은책"}
     ]

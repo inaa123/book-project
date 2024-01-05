@@ -1,11 +1,14 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { getAllBooks, onUserState } from '../api/firebase';
+import { getAllBooks, getStateOptionBook, onUserState } from '../api/firebase';
 import { useQuery } from 'react-query';
 import MyBookListItem from '../components/MyBookListItem';
-
+import OptionBookListItem from '../components/OptionBookListItem';
 function MyBook() {
     const [user, setUser] = useState('');
+    // const [isClick, setIsClick] = useState(false);
+    // const [books, setBooks] = useState([]);
+    // const {option} = useParams();
 
     useEffect(()=>{
         onUserState((user) => {
@@ -15,8 +18,19 @@ function MyBook() {
 
     const {data : bookItem} = useQuery({
         queryKey : 'bookItem',
-        queryFn : getAllBooks(user.uid)
+        queryFn : () => getAllBooks(user.uid)
     })
+
+    // const onClickEvent = () => {
+    //     setIsClick(true);
+    //     try{
+    //         getStateOptionBook(bookItem.option, user.uid).then((book)=>{
+    //             setBooks(book);
+    //         })
+    //     }catch(error){
+    //         console.error(error)
+    //     }   
+    // }
 
     return (
         <MyBookContainer className='container'>
@@ -26,11 +40,12 @@ function MyBook() {
             </div>
             <div className='bookListWrapper'>
                 <ul>
-                    <li>
-                    {bookItem && bookItem.map((el)=>(
+                    { bookItem && bookItem.map((el)=>(
                         <MyBookListItem key={el.id} post={el}/>
                     ))}
-                    </li>
+                    {/* {isClick && bookItem && bookItem.map((el)=>(
+                        <OptionBookListItem key={el.id} option={bookItem.option} bookList={el} />
+                    ))} */}
                 </ul>
             </div>
         </MyBookContainer>
