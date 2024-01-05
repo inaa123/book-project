@@ -6,6 +6,7 @@ import styled from 'styled-components';
 function DetailBook() {
     const [user, setUser] = useState();
     const [selected, setSelected] = useState('');
+    const [isClick, setIsClick] = useState(false);
     const state = useLocation().state;
     const {isbn, image, title, author, publisher, discription} = state;
 
@@ -29,8 +30,10 @@ function DetailBook() {
         if(!user){
             navigate('/login')
         }else{
-            if(selected){
+            setIsClick(true)
+            if(selected && setIsClick){
                 try{
+                    setIsClick(false);
                     await addBooks(isbn, image, title, selected, user.uid);
                 }catch(error){
                     console.error(error);
@@ -84,24 +87,9 @@ function DetailBook() {
                 <button onClick={onClickEvent}>기록함추가</button>
                 <button onClick={onWriteQuote}>한마디작성</button>
                 
-                {!selected && <p>상태를 선택하세요!</p>}
+                {!selected && isClick && <p>상태를 선택하세요!</p>}
                 </div>
-                {/* {isClick && (
-                    <select value={selected} onChange={handleSelect}>
-                    <option>상태</option>
-                    {selectList.map((item, index) => (
-                        <option key={index} value={item.value} onClick={(e)=>onClickEvent}>{item.name}</option>
-                    ))}
-                    </select>
-                )} */}
-            {/* {isClick && 
-                <select value={selected} onChange={handleSelect} >
-                    <option value=''>클릭</option>
-                    {selectList.map((el, idx) => (
-                        <option key={idx} value={el} onClick={addMyBook}>{el.name}</option>
-                    ))}
-                </select>
-            } */}
+                
             </DetailPage>
             
         </div>
