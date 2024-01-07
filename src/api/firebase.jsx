@@ -97,12 +97,12 @@ export async function getQuotes(){
 }
 
 //addMyBook
-export async function addBooks(isbn, image, title, option, user){
+export async function addBooks(isbn, image, title, state, user){
     return set(ref(database, `myBooks/${user}/${isbn}`), {
         isbn,
         image,
         title,
-        option,
+        state,
         user
     })
 }

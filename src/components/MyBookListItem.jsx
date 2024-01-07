@@ -2,10 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router'
 import styled from 'styled-components';
 
-function MyBookListItem({post}) {
+function MyBookListItem({post, state}) {
     const navigate = useNavigate();
 
     const moveDetailBook = () => {
+        // console.log(post.state) //done, reading
         navigate(`/book/detail/${post.isbn}`, {
             state : {
                 isbn : post.isbn,
@@ -15,11 +16,17 @@ function MyBookListItem({post}) {
             }
         })
     }
+
     return (
-        <MyBookItem onClick={moveDetailBook}>
-            <img src={post.image}/>
-            <p>{post.title}</p>
-        </MyBookItem>
+        <>
+            {(post.state === state) && (
+                <MyBookItem onClick={moveDetailBook}>
+                <img src={post.image}/>
+                <p>{post.title}</p>
+                </MyBookItem>
+            )}
+        </>
+        
     )
 }
 

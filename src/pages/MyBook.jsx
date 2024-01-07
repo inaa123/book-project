@@ -1,15 +1,17 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { getAllBooks, getStateOptionBook, onUserState } from '../api/firebase';
+import { getAllBooks,  onUserState } from '../api/firebase';
 import { useQuery } from 'react-query';
 import MyBookListItem from '../components/MyBookListItem';
-import OptionBookListItem from '../components/OptionBookListItem';
+import MyBookStateCategory from '../components/MyBookStateCategory';
 
 
 function MyBook() {
     const [user, setUser] = useState('');
     const [isClick, setIsClick] = useState(false);
-    const [books, setBooks] = useState([]);
+    // const [books, setBooks] = useState([]);
+    const [state, setState] = useState('');
+    const onSelect = useCallback(state => setState(state), []);
 
     useEffect(()=>{
         onUserState(setUser)
@@ -18,27 +20,33 @@ function MyBook() {
     const {data: bookItem} = useQuery('bookItem', () => getAllBooks(user?.uid), {
         enabled: !!user?.uid 
     });
-
-
-    const onClickEvent = () => {
-        setIsClick(true)
-        bookItem.map((el)=>(
-            getStateOptionBook(el.option, user.uid)
-        ))
-        // bookItem.map((el)=>(
-        //     setBooks(el),
-        //     getStateOptionBook(el.option, books)
-        // ))
-        // console.log(books)
-    }
+    
+    // const onClickEvent = () => {
+    //     setIsClick(true)
+    //     bookItem.map((el)=>(
+    //         getStateOptionBook(el.option, user.uid)
+    //     ))
+    //     // bookItem.map((el)=>(
+    //     //     setBooks(el),
+    //     //     getStateOptionBook(el.option, books)
+    //     // ))
+    //     // console.log(books)
+    // }
 
     return (
         <MyBookContainer className='container'>
-            <div className='btnContainer' >
-                <button onClick={onClickEvent}>읽는중</button>
-                <button>읽은책</button>
-            </div>
-            <div className='bookListWrapper'>
+            <MyBookStateCategory state={state} onSelect={onSelect} />
+            <ul>
+                {!bookItem && <p>기록함이 비어있습니다.</p>}
+                {bookItem && bookItem.map(el => (
+                    <MyBookListItem key={el.id} post={el} state={state} />
+                ))}
+                
+                {/* {isClick && bookItem && bookItem.map(el=>(
+                    <MyBookCategoryItem key={el.id} post={el} category={category}/>
+                ))} */}
+            </ul>
+            {/* <div className='bookListWrapper'>
                 <ul>
                     {!isClick && bookItem && bookItem.map((el)=>(
                         <MyBookListItem key={el.id} post={el}/>
@@ -47,7 +55,7 @@ function MyBook() {
                         <OptionBookListItem key={el.id} option={el.option} bookList={el} />
                     ))}
                 </ul>
-            </div>
+            </div> */}
         </MyBookContainer>
     )
 }
