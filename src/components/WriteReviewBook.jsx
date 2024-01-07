@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function WriteQuoteBook({book}) {
+function WriteReviewBook({book}) {
 
     const navigate = useNavigate();
-    const quoteNavigate = () => {
-        navigate(`/quote/write/${book.isbn}`, {
+    const reviewNavigate = () => {
+        navigate(`/review/write/${book.isbn}`, {
             state : {
                 isbn : book.isbn,
                 title : book.title,
@@ -20,7 +20,7 @@ function WriteQuoteBook({book}) {
     }
 
     return (
-        <SearchBookList onClick={quoteNavigate}>
+        <SearchBookList onClick={reviewNavigate}>
             <img src={book.image}/>
             <div className='bookWrap'>
                 <h3>{book.title}</h3>
@@ -31,7 +31,7 @@ function WriteQuoteBook({book}) {
     )
 }
 
-export default WriteQuoteBook
+export default WriteReviewBook
 
 const SearchBookList = styled.div`
     display: flex;

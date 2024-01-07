@@ -2,16 +2,19 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 
-function QuoteListItem({post}) {
+function ReviewListItem({post}) {
 
     const navigate = useNavigate();
     const onDetail = () => {
-        navigate(`/book/detail/${post.isbn}`, {
+        navigate(`/review/detail/${post.id}`, {
             state : {
+                id : post.id,
                 isbn : post.isbn,
                 title : post.title,
+                text : post.text,
                 image : post.image,
                 author : post.author,
+                userName : post.userName,
                 publisher : post.publisher,
                 description : post.description,
             }
@@ -19,19 +22,19 @@ function QuoteListItem({post}) {
     }
 
     return (
-        <QuoteItem onClick={onDetail}>
+        <ReviewItem onClick={onDetail}>
             <div className='content'>
                 <p>{post.title}</p>
                 <p>{post.userName}</p>
                 <p>{post.text}</p>
             </div>
-        </QuoteItem>
+        </ReviewItem>
     )
 }
 
-export default QuoteListItem
+export default ReviewListItem
 
-const QuoteItem = styled.div`
+const ReviewItem = styled.div`
     display: block;
     border : solid 1px rgba(0,0,0,0.5);
     border-radius: 15%;
@@ -44,3 +47,4 @@ const QuoteItem = styled.div`
     flex-basis: 30%;
     
 `
+

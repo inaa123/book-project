@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import styled from 'styled-components'
-import { getQuotes, onUserState } from '../api/firebase'
+import { getReviews, onUserState } from '../api/firebase'
 import { useNavigate } from 'react-router-dom'
-import QuoteListItem from '../components/QuoteListItem'
+import ReviewListItem from '../components/ReviewListItem'
 
-function Quotes() {
+function Reviews() {
     const [user, setUser] = useState();
     const navigate = useNavigate();
 
-    const {data : quote} = useQuery({
-        queryKey : 'quote',
-        queryFn : getQuotes
+    const {data : review} = useQuery({
+        queryKey : 'review',
+        queryFn : getReviews
     })
 
     useEffect(()=>{
@@ -22,7 +22,6 @@ function Quotes() {
 
     const onWrite = () => {
         if(user){
-            // navigate(`/quote/write`, , {state : user.eamil})
             navigate(`/book/search`)
         }else{
             navigate(`/login`)
@@ -31,27 +30,27 @@ function Quotes() {
     }
 
     return (
-        <QuotesContainer className='container'>
-            <div className='quote-top'>
+        <ReviewsContainer className='container'>
+            <div className='review-top'>
                 <h2>한마디</h2>
-                <h3>인상깊은 책 문장을 남겨주세요.</h3>
+                <h3>인상 깊은 책의 리뷰를 남겨주세요.</h3>
                 <button onClick={onWrite}>작성하기</button>
             </div>
-            <ul className='quotesList'>
+            <ul className='reviewList'>
                 <li>
-                {quote && quote.map((el) => (
-                    <QuoteListItem key={el.id} post={el}/>
+                {review && review.map((el) => (
+                    <ReviewListItem key={el.id} post={el}/>
                 ))}
                 </li>
             </ul>
-        </QuotesContainer>
+        </ReviewsContainer>
     )
 }
 
-export default Quotes
+export default Reviews
 
-const QuotesContainer = styled.div`
-    .quotesList{
+const ReviewsContainer = styled.div`
+    .reviewList{
         li{
             display: flex;
             gap: 10px;

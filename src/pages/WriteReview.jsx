@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { addQuote, onUserState } from '../api/firebase';
+import { addReview, onUserState } from '../api/firebase';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-function WriteQuote() {
+function WriteReview() {
     const [user, setUser] = useState();
     const [bookText, setBookText] = useState('');
 
@@ -15,7 +15,7 @@ function WriteQuote() {
     useEffect(()=>{
         onUserState((user) => {
             setUser(user)
-            console.log(user.displayName)
+            // console.log(user.displayName)
         })
     })
 
@@ -25,9 +25,8 @@ function WriteQuote() {
         e.preventDefault();
         
         try{
-            // await addQuote(email, bookTitle, bookWriter, bookText);
-            await addQuote(user.email, user.displayName, isbn, title, author, bookText);
-            navigate('/quote')
+            await addReview(user.email, user.displayName, isbn, title, author, bookText);
+            navigate('/review')
         }catch(error){
             console.error(error)
         }
@@ -59,4 +58,4 @@ function WriteQuote() {
     )
 }
 
-export default WriteQuote
+export default WriteReview

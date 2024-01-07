@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import instance from '../api/axios';
-import WriteQuoteBook from './WriteQuoteBook';
+import WriteReviewBook from './WriteReviewBook';
 
 function SearchItem() {
     const [keywords, setKeywords] = useState('');
@@ -62,7 +62,7 @@ function SearchItem() {
                 <ul className='searchList'>
                     <li>
                         {Array.isArray(bookList) && bookList.map((book) => (
-                            <WriteQuoteBook 
+                            <WriteReviewBook 
                                 key={book.id} book={book}
                             />
                         ))}

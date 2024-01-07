@@ -44,9 +44,9 @@ function DetailBook() {
         }
     }
 
-    const onWriteQuote = () => {
+    const onWriteReview = () => {
         if(user){
-            navigate(`/quote/write/${isbn}`, {
+            navigate(`/review/write/${isbn}`, {
                 state : {
                     title : title,
                     author : author,
@@ -85,7 +85,7 @@ function DetailBook() {
                     ))}
                 </select>
                 <button onClick={onClickEvent}>기록함추가</button>
-                <button onClick={onWriteQuote}>한마디작성</button>
+                <button onClick={onWriteReview}>한마디작성</button>
                 
                 {!selected && isClick && <p>상태를 선택하세요!</p>}
                 </div>

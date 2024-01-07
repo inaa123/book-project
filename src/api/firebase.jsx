@@ -42,6 +42,7 @@ export function onUserState(callback){
             // }catch(error){
             //     console.error(error);
             // }
+            console.log(user)
         }else{
             callback(null)
         }
@@ -71,7 +72,7 @@ export async function signupEmail(email, password, name){
 
 //게시글 저장
 //addQuote(user, title, writer, text) isbn:책id
-export async function addQuote(user, userName, isbn, title, writer, text){
+export async function addReview(user, userName, isbn, title, writer, text){
     const id = uuid(); //게시글id, npm install uuid , yarn add uuid
     const postData = {
         id,
@@ -82,12 +83,12 @@ export async function addQuote(user, userName, isbn, title, writer, text){
         writer,
         text
     }
-    return set(ref(database, `/quote/${id}`), postData)
+    return set(ref(database, `/review/${id}`), postData)
 }
 
 //게시글 가져오기
-export async function getQuotes(){
-    return get(ref(database, 'quote'))
+export async function getReviews(){
+    return get(ref(database, 'review'))
     .then((snapshot) => {
         if(snapshot.exists()){
             return Object.values(snapshot.val());
@@ -118,16 +119,25 @@ export async function getAllBooks(userId){
     })
 }
 
-//state option
-export async function getStateOptionBook(option, userId){
+//댓글작성
+export async function addComments(reviewId, user, userName, text){
+    const commentId = uuid();
+    const postData = {
+        commentId,
+        user,
+        userName,
+        text
+    }
+    return set(ref(database, `/review/${reviewId}/comments/${commentId}`), postData)
+}
 
-    return get(ref(database, `myBooks/${userId}`)).then((snapshot) => {
+//댓글출력
+export async function getComments(reviewId){
+    return get(ref(database,  `/review/${reviewId}/comments`))
+    .then((snapshot)=>{
         if(snapshot.exists()){
-            const allBooks = Object.values(snapshot.val());
-            console.log(allBooks)
-            const filterBooks = allBooks.filter((book) => book.option === option);
-            return filterBooks
+            return Object.values(snapshot.val());
         }
-        return [];
+        return []
     })
 }
