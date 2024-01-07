@@ -17,9 +17,11 @@ function MyBook() {
         onUserState(setUser)
     },[])
 
-    const {data: bookItem} = useQuery('bookItem', () => getAllBooks(user?.uid), {
-        enabled: !!user?.uid 
-    });
+    const {data : bookItem} = useQuery({
+        queryKey : [`/mybook/${user.uid}`],
+        queryFn : () => getAllBooks(user?.uid),
+        enabled : !!user?.uid
+    })
     
     // const onClickEvent = () => {
     //     setIsClick(true)
