@@ -45,17 +45,15 @@ function Nav() {
                 <div className='userWrapper'>
                     {user ? (
                         <>
-                            <span>{user.displayName}</span>
-                            <button className='logoutBtn' onClick={logout}>LogOut</button>
+                            <span>{user.displayName}<span className='subText'>님 환영합니다</span></span> 
+                            <button className='logoutBtn' onClick={logout}>로그아웃</button>
                         </>
                     ) : (
                         <>
-                            <button className='loginBtn' onClick={login}>LogIn</button>
-                            <button className='signupBtn' onClick={signup}>SignUp</button>
+                            <button className='loginBtn' onClick={login}>로그인</button>
+                            <button className='signupBtn' onClick={signup}>회원가입</button>
                         </>
                     )}
-
-                    
                 </div>
             </nav>
         </HeaderContainer>
@@ -65,22 +63,46 @@ function Nav() {
 export default Nav
 
 const HeaderContainer = styled.header`
-    max-width : 1200px;
-    padding : 50px 0px;
-    margin : 0px auto;
-    a{
-        color: black;
+    background-color: #0c4825;
+    color: #f9f7eb;
+    cursor: pointer;
+    font-size: 18px;
+    a, button{
+            color: #f9f7eb;
     }
     nav{
+        max-width : 1200px;
+        margin: 0px auto;
+        padding : 40px 10%;
         display: flex;
         justify-content: space-between;
         ul{
             display: flex;
             gap : 50px;
+            li, a{
+                &:hover{
+                    color: #FFD700;
+                }
+            }
         }
         .userWrapper{
             display: flex;
-            gap: 50px;
+            align-items: center;
+            gap: 20px;
+            button{
+                /* font-size: 16px; */
+                &:hover{
+                    color: #FFD700;
+                }
+            }
+            span{
+                cursor: default;
+                font-size: 16px;
+                .subText{
+                    font-size: 14px;
+                }
+            }
         }
     }
+    
 `

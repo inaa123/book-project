@@ -66,15 +66,18 @@ const GlobalStyle = createGlobalStyle`
     body{
         /* background-color: #0d341d; */
         /* background-color: #0c4825; */
+        background-color: #f9f7eb;
         font-family : 'Pretendard';
     }
-    input {
+    input{
+        background: transparent;
+        border : none;
         font-family : 'Pretendard'
     }
     .container{
         max-width : 1200px;
         margin: 0px auto;
-        padding : 100px 0px;
+        padding : 100px 5%;
         border-radius: 10px;
         /* background-color: #f2e9c7; */
         /* background-color: #eee7c9; */
