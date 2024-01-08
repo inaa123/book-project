@@ -35,9 +35,6 @@ function MyBook() {
                     <MyBookListItem key={el.id} post={el} state={state} />
                 ))}
                 
-                {/* {isClick && bookItem && bookItem.map(el=>(
-                    <MyBookCategoryItem key={el.id} post={el} category={category}/>
-                ))} */}
             </ul>
         </MyBookContainer>
     )

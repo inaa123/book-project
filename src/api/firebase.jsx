@@ -37,12 +37,7 @@ export function onUserState(callback){
     onAuthStateChanged(auth, async(user)=> {
         if(user){
             callback(user)
-            // try{
-            //     callback(user)
-            // }catch(error){
-            //     console.error(error);
-            // }
-            console.log(user)
+            // console.log(user)
         }else{
             callback(null)
         }
