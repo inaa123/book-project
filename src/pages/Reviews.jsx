@@ -26,7 +26,6 @@ function Reviews() {
         }else{
             navigate(`/login`)
         }
-        
     }
 
     return (
@@ -68,8 +67,6 @@ const ReviewsContainer = styled.div`
             display: flex;
             gap : 10px;
             justify-content: space-between;
-            
-            /* gap: 10px; */
         }
     }
 `
