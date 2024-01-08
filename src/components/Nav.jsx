@@ -8,17 +8,17 @@ function Nav() {
 
     const navigate = useNavigate();
 
-    const login = () => {
-        navigate('/login')
-    }
+    // const login = () => {
+    //     navigate('/login')
+    // }
 
-    const signup = () => {
-        navigate('/signup')
-    }
+    // const signup = () => {
+    //     navigate('/signup')
+    // }
 
-    const logout = () => {
-        logoutEmail().then(setUser);
-    }
+    // const logout = () => {
+    //     logoutEmail().then(setUser);
+    // }
 
     useEffect(() => {
         onUserState((user) => {
@@ -46,12 +46,12 @@ function Nav() {
                     {user ? (
                         <>
                             <span>{user.displayName}<span className='subText'>님 환영합니다</span></span> 
-                            <button className='logoutBtn' onClick={logout}>로그아웃</button>
+                            <button className='logoutBtn' onClick={()=>logoutEmail().then(setUser)}>로그아웃</button>
                         </>
                     ) : (
                         <>
-                            <button className='loginBtn' onClick={login}>로그인</button>
-                            <button className='signupBtn' onClick={signup}>회원가입</button>
+                            <button className='loginBtn' onClick={()=>navigate('/login')}>로그인</button>
+                            <button className='signupBtn' onClick={()=>navigate('/signup')}>회원가입</button>
                         </>
                     )}
                 </div>
