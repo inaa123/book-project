@@ -22,7 +22,7 @@ function Reviews() {
 
     const onWrite = () => {
         if(user){
-            navigate(`/book/search`)
+            navigate(`/`)
         }else{
             navigate(`/login`)
         }
