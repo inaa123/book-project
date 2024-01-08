@@ -17,20 +17,15 @@ function MyBookListItem({post, state}) {
         })
     }
 
+    const shouldRenderItem = !state || post.state === state;
+
     return (
         <>
-            {!state ? ( //전체 책list
+            {shouldRenderItem && (
                 <MyBookItem onClick={moveDetailBook}>
-                <img src={post.image}/>
-                <p>{post.title}</p>
-                </MyBookItem>
-            ) : ( //reading, done 책list
-                (post.state === state) && (
-                    <MyBookItem onClick={moveDetailBook}>
-                    <img src={post.image}/>
+                    <img src={post.image} alt={`${post.title}`} />
                     <p>{post.title}</p>
-                    </MyBookItem>
-                )
+                </MyBookItem>
             )}
         </>
         

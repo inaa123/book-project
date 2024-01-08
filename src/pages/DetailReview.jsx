@@ -26,11 +26,13 @@ function DetailReview() {
         }
     }
 
-    const {data : comments} = useQuery({
-        queryKey : [`/review/${id}/comments`],
-        queryFn : () => getComments(id)
-    })
-
+    const {data : comments, isLoading, error} = useQuery(
+        `/review/${id}/comments`, 
+        () => getComments(id));
+    
+    if(isLoading) return <p>Loading comments...</p>
+    if(error) return <p>Error loading comments</p>
+    
     return (
         <div className='container'>
             <div >

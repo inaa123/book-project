@@ -5,6 +5,7 @@ import { onUserState } from '../api/firebase';
 
 function DetailBookEvent({book}) {
     const [user, setUser] = useState();
+    const navigate = useNavigate();
 
     useEffect(()=>{
         onUserState((user)=>{
@@ -12,11 +13,9 @@ function DetailBookEvent({book}) {
         })
     })
 
-    const navigate = useNavigate();
     const detailNavigate = () => {
         navigate(`/book/detail/${book.isbn}`, {
             state : {
-                // email : user.email,
                 isbn : book.isbn,
                 title : book.title,
                 image : book.image,

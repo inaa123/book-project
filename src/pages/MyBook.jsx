@@ -8,7 +8,7 @@ import MyBookStateCategory from '../components/MyBookStateCategory';
 
 function MyBook() {
     const [user, setUser] = useState('');
-    const [isClick, setIsClick] = useState(false);
+    // const [isClick, setIsClick] = useState(false);
     // const [books, setBooks] = useState([]);
     const [state, setState] = useState('');
     const onSelect = useCallback(state => setState(state), []);
@@ -17,11 +17,14 @@ function MyBook() {
         onUserState(setUser)
     },[])
 
-    const {data : bookItem} = useQuery({
-        queryKey : [`/mybook/${user.uid}`],
-        queryFn : () => getAllBooks(user?.uid),
-        enabled : !!user?.uid
-    })
+    const {data : bookItem, isLoading, error} = useQuery(
+        `/mybook/${user?.uid}`, 
+        () => getAllBooks(user?.uid),
+        { enabled: !!user?.uid }
+    )
+
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error loading books.</p>;
     
     return (
         <MyBookContainer className='container'>
