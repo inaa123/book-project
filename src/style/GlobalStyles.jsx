@@ -61,10 +61,15 @@ const GlobalStyle = createGlobalStyle`
         outline: none;
         background: transparent;
         cursor: pointer;
+        font-family : 'Pretendard';
     }
     body{
         /* background-color: #0d341d; */
         /* background-color: #0c4825; */
+        font-family : 'Pretendard';
+    }
+    input {
+        font-family : 'Pretendard'
     }
     .container{
         max-width : 1200px;
@@ -74,7 +79,8 @@ const GlobalStyle = createGlobalStyle`
         /* background-color: #f2e9c7; */
         /* background-color: #eee7c9; */
     }
-
 `
+
+
 
 export default GlobalStyle;
