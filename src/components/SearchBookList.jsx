@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 import { onUserState } from '../api/firebase';
 
-function DetailBookEvent({book}) {
+function SearchBookList({book}) {
     const [user, setUser] = useState();
     const navigate = useNavigate();
 
@@ -27,20 +27,20 @@ function DetailBookEvent({book}) {
     }
 
     return (
-        <SearchBookList onClick={detailNavigate}>
+        <SearchResult onClick={detailNavigate}>
             <img src={book.image}/>
             <div className='bookWrap'>
                 <h3>{book.title}</h3>
                 <p>{book.author}</p>
                 <p>{book.publisher}</p>
             </div>
-        </SearchBookList>
+        </SearchResult>
     )
 }
 
-export default DetailBookEvent
+export default SearchBookList
 
-const SearchBookList = styled.div`
+const SearchResult = styled.div`
     display: flex;
     background-color: blanchedalmond;
     img{
@@ -50,3 +50,4 @@ const SearchBookList = styled.div`
         
     }
 `
+

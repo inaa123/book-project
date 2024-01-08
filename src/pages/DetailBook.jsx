@@ -8,7 +8,7 @@ function DetailBook() {
     const [selected, setSelected] = useState('');
     const [isClick, setIsClick] = useState(false);
     const state = useLocation().state;
-    const {isbn, image, title, author, publisher, discription} = state;
+    const {isbn, image, title, author, publisher, description} = state;
 
      const selectList = [
         {value : "reading", name : "읽는중"},
@@ -34,7 +34,7 @@ function DetailBook() {
             if(selected && setIsClick){
                 try{
                     setIsClick(false);
-                    await addBooks(isbn, image, title, selected, user.uid);
+                    await addBooks(isbn, image, title, author, publisher, description, selected, user.uid);
                 }catch(error){
                     console.error(error);
                 }finally{
@@ -56,7 +56,6 @@ function DetailBook() {
         }else{
             navigate(`/login`)
         }
-        
     }
 
     const handleSelect = (e) => {
@@ -74,9 +73,6 @@ function DetailBook() {
                     <p>{author}</p>
                     <p>{publisher}</p>
                 </div>
-                <div>
-                    <p>{discription}</p>
-                </div>
                 <div className='btnWrapper'>
                 <select value={selected} onChange={handleSelect}>
                     <option value="" disabled>상태</option>
@@ -89,7 +85,9 @@ function DetailBook() {
                 
                 {!selected && isClick && <p>상태를 선택하세요!</p>}
                 </div>
-                
+                <div>
+                    <p>{description}</p>
+                </div>
             </DetailPage>
             
         </div>

@@ -93,11 +93,14 @@ export async function getReviews(){
 }
 
 //addMyBook
-export async function addBooks(isbn, image, title, state, user){
+export async function addBooks(isbn, image, title, author, publisher, description, state, user){
     return set(ref(database, `myBooks/${user}/${isbn}`), {
         isbn,
         image,
         title,
+        author,
+        publisher,
+        description,
         state,
         user
     })

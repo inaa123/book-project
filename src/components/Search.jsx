@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import instance from '../api/axios';
 import styled from 'styled-components';
-import DetailBookEvent from './DetailBookEvent';
+import SearchBookList from './SearchBookList';
 
 function Search() {
     const [keywords, setKeywords] = useState('');
@@ -63,7 +63,7 @@ function Search() {
                 <ul className='searchList'>
                     <li>
                         {Array.isArray(bookList) && bookList.map((book) => (
-                            <DetailBookEvent 
+                            <SearchBookList 
                                 key={book.id} book={book}
                             />
                         ))}

@@ -8,11 +8,14 @@ function MyBookListItem({post, state}) {
     const moveDetailBook = () => {
         // console.log(post.state) //done, reading
         navigate(`/book/detail/${post.isbn}`, {
+            //await addBooks(isbn, image, title, author, publisher, description, selected, user.uid);
             state : {
                 isbn : post.isbn,
                 title : post.title,
                 image : post.image,
-                option : post.option
+                author : post.author,
+                publisher : post.publisher,
+                description : post.description
             }
         })
     }
