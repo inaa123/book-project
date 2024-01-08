@@ -24,9 +24,9 @@ function ReviewListItem({post}) {
     return (
         <ReviewItem onClick={onDetail}>
             <div className='content'>
-                <p>{post.title}</p>
                 <p>{post.userName}</p>
                 <p>{post.text}</p>
+                <p>{post.title}</p>
             </div>
         </ReviewItem>
     )
@@ -35,16 +35,16 @@ function ReviewListItem({post}) {
 export default ReviewListItem
 
 const ReviewItem = styled.div`
-    display: block;
+    display: flex;
     border : solid 1px rgba(0,0,0,0.5);
-    border-radius: 15%;
-    width : 300px;
-    height: 300px;
-    padding: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
+    border-radius: 20%;
+    width: 200px;
+    height: 250px;
     flex-shrink: 0;
-    flex-basis: 30%;
+    flex-basis: 25%;
+    .content{
+        padding : 30px;
+    }
     
 `
 

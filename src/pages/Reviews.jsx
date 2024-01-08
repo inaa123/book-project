@@ -32,8 +32,7 @@ function Reviews() {
     return (
         <ReviewsContainer className='container'>
             <div className='review-top'>
-                <h2>한마디</h2>
-                <h3>인상 깊은 책의 리뷰를 남겨주세요.</h3>
+                <h3 className='subText'>인상 깊은 책의 리뷰를 남겨주세요.</h3>
                 <button onClick={onWrite}>작성하기</button>
             </div>
             <ul className='reviewList'>
@@ -50,10 +49,27 @@ function Reviews() {
 export default Reviews
 
 const ReviewsContainer = styled.div`
+
+    .review-top{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin-bottom: 20px;
+        button{
+            display: block;
+            position: absolute;
+            right: 0;
+        }
+    }
     .reviewList{
+        max-width: 1200px;
         li{
             display: flex;
-            gap: 10px;
+            gap : 10px;
+            justify-content: space-between;
+            
+            /* gap: 10px; */
         }
     }
 `
