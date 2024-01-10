@@ -39,6 +39,7 @@ function DetailReview() {
                 <p>제목 : {title}</p>
                 <p>내용 : {text}</p>
                 <p>작성자 : {userName}</p>
+                
             </div>
             <div>
                 <strong>댓글</strong><br/>

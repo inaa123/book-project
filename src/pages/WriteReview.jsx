@@ -8,7 +8,7 @@ function WriteReview() {
 
     const state = useLocation().state;
     // const email = state;
-    const {isbn, author, title} =state;
+    const {isbn, author, title, image} =state;
 
     const navigate = useNavigate();
 
@@ -19,13 +19,11 @@ function WriteReview() {
         })
     })
 
-
-
     const onSubmit = async (e) => {
         e.preventDefault();
         
         try{
-            await addReview(user.email, user.displayName, isbn, title, author, bookText);
+            await addReview(user.email, user.displayName, isbn, title, author, bookText, image);
             navigate('/review')
         }catch(error){
             console.error(error)

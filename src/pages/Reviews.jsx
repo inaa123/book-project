@@ -48,25 +48,32 @@ function Reviews() {
 export default Reviews
 
 const ReviewsContainer = styled.div`
-
     .review-top{
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        position: relative;
-        margin-bottom: 20px;
+        margin-bottom: 20px; 
+        border-bottom: solid 1px black;
         button{
-            display: block;
-            position: absolute;
-            right: 0;
+            width: auto;
+            background-color: #0c4825;
+            padding: 15px 30px;
+            border-radius: 20px;
+            color: white;
+            letter-spacing: 3px;
+            line-height: 20px;
+            font-size: 16px;
+            font-weight: 500;
         }
     }
+ 
     .reviewList{
-        max-width: 1200px;
+        margin: 50px auto;
         li{
-            display: flex;
-            gap : 10px;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(282px, auto));
+            gap: 24px;
+            cursor: pointer
         }
     }
 `

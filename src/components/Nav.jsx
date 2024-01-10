@@ -8,18 +8,6 @@ function Nav() {
 
     const navigate = useNavigate();
 
-    // const login = () => {
-    //     navigate('/login')
-    // }
-
-    // const signup = () => {
-    //     navigate('/signup')
-    // }
-
-    // const logout = () => {
-    //     logoutEmail().then(setUser);
-    // }
-
     useEffect(() => {
         onUserState((user) => {
             setUser(user);

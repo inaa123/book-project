@@ -51,6 +51,7 @@ function DetailBook() {
                     title : title,
                     author : author,
                     isbn : isbn,
+                    image : image
                 }
             })
         }else{
@@ -65,27 +66,29 @@ function DetailBook() {
     return (
         <div className='container'>
             <DetailPage>
-                <div>
-                    <img src={image} alt={title}/>
-                </div>
-                <div>
+                <div className='title'>
                     <h3>{title}</h3>
-                    <p>{author}</p>
-                    <p>{publisher}</p>
                 </div>
-                <div className='btnWrapper'>
-                <select value={selected} onChange={handleSelect}>
-                    <option value="" disabled>상태</option>
-                    {selectList.map((item, index) => (
-                        <option key={index} value={item.value}>{item.name}</option>
-                    ))}
-                </select>
-                <button onClick={onClickEvent}>기록함추가</button>
-                <button onClick={onWriteReview}>한마디작성</button>
-                
-                {!selected && isClick && <p>상태를 선택하세요!</p>}
+                <div className='content'> 
+                    <img src={image} alt={title}/>
+                    <div className='subContent'>
+                        <p>{author}</p>
+                        <p>{publisher}</p>
+                    </div>
+                    <div className='btnWrapper'>
+                        <select value={selected} onChange={handleSelect}>
+                            <option value="" disabled>상태</option>
+                            {selectList.map((item, index) => (
+                                <option key={index} value={item.value}>{item.name}</option>
+                            ))}
+                        </select>
+                        <button onClick={onClickEvent}>기록함추가</button>
+                        <button onClick={onWriteReview}>한마디작성</button>
+                        
+                        {!selected && isClick && <p>상태를 선택하세요!</p>}
+                    </div>
                 </div>
-                <div>
+                <div className='content2'>
                     <p>{description}</p>
                 </div>
             </DetailPage>
@@ -98,8 +101,22 @@ function DetailBook() {
 export default DetailBook
 
 const DetailPage = styled.div`
-    img{
-        max-width : 400px;
-        width: 100%;
+    .title{
+        font-size: 40px;
+    }
+    .content{
+        display: flex;
+        
+        /* flex-direction: column; */
+        img{
+            max-width : 400px;
+            width: 100%;
+        }
+        .subContent{
+            display: flex;
+        }
+        .btnWrapper{
+            display: block;
+        }
     }
 `
