@@ -38,10 +38,12 @@ function MyBook() {
         <MyBookContainer className='container'>
             <MyBookStateCategory state={state} onSelect={onSelect} />
             <ul>
-                {!bookList && <li><p>{msg}</p></li>}
+                <li>
+                {!bookList && <p>{msg}</p>}
                 {bookList && bookList.map(el => (
                     <MyBookListItem key={el.id} post={el} state={state} />
                 ))}
+                </li>
             </ul>
         </MyBookContainer>
     )
@@ -50,5 +52,12 @@ function MyBook() {
 export default MyBook
 
 const MyBookContainer = styled.div`
-    
+    ul{
+        margin: 20px auto;
+        li{
+            display: grid;
+            grid-template-columns: repeat(4, minmax(282px, auto));
+            gap: 24px;
+        }
+    }
 `

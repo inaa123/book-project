@@ -56,7 +56,6 @@ const ReviewItem = styled.div`
     border-radius: 30px;
     padding: 30px;
     display: flex;
-    width: 200px;
     height: auto;
     min-height: 200px;
     

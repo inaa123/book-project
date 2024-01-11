@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { addBooks, onUserState } from '../api/firebase';
 import styled from 'styled-components';
+import { FaPaperPlane } from "react-icons/fa";
+import { LuBookPlus } from "react-icons/lu";
 
 function DetailBook() {
     const [user, setUser] = useState();
@@ -78,27 +80,34 @@ function DetailBook() {
                             <p><span>저자</span>{author}</p>
                             <p><span>출판사</span>{publisher}</p>
                         </div>
+                        <div className='selectBox'>
+                            <select value={selected} onChange={handleSelect}>
+                                <option value="" disabled>상태</option>
+                                {selectList.map((item, index) => (
+                                    <option key={index} value={item.value}>{item.name}</option>
+                                ))}
+                            </select>
+                            <div className='stateMsg'>
+                                {!selected && isClick && <p>상태를 선택하세요!</p>}
+                            </div>
+                        </div>
                         <div className='btnWrapper'>
                             <div className='mybookBtn'>
-                                <select value={selected} onChange={handleSelect}>
-                                    <option value="" disabled>상태</option>
-                                    {selectList.map((item, index) => (
-                                        <option key={index} value={item.value}>{item.name}</option>
-                                    ))}
-                                </select>
-                                <button onClick={onClickEvent}>기록함추가</button>
+                                <button onClick={onClickEvent}>
+                                <LuBookPlus /><p>기록함추가</p></button>
                             </div>
                             <div className='reviewBtn'>
-                                <button onClick={onWriteReview}>한마디작성</button>
+                                <button onClick={onWriteReview}>
+                                    <FaPaperPlane />
+                                    <p>한마디</p></button>
                             </div>
                         </div>
-                        <div className='stateMsg'>
-                            {!selected && isClick && <p>상태를 선택하세요!</p>}
-                        </div>
+                        
                     </div>{/*detailContent*/}
                 </div>
                 <div className='introBook'>
-                    <p>{description}</p>
+                    <h4>책소개</h4>
+                    <p className='description'>{description}</p>
                 </div>
             </DetailPage>
         </div>
@@ -108,6 +117,7 @@ function DetailBook() {
 export default DetailBook
 
 const DetailPage = styled.div`
+    
     .title{
         font-size: 40px;
         padding-bottom: 30px;
@@ -115,16 +125,24 @@ const DetailPage = styled.div`
     .content{
         display: flex;
         gap : 60px;
+        border-bottom: solid 1px rgba(0,0,0,0.5);
+        height: auto;
+        padding: 30px;
         .thumbnail{
-            width : 300px;
-            height : 350px;
+            margin-bottom: 10px;
+            img{
+                width : 300px;
+                height : 400px;
+            }
+            
         }
         .detailContent{
             display: flex;
             flex-direction: column;
-            gap: 150px;
-            margin-top: 50px;
+            gap: 10px;
+            margin-top: 80px;
             .bookData{
+                margin-bottom: 50px;
                 p{
                     font-size: 20px;
                     margin-bottom: 20px;
@@ -134,17 +152,44 @@ const DetailPage = styled.div`
                     }
                 }
             }
+            .selectBox{
+                display: flex;
+                align-items: center;
+                gap : 10px;
+                select{
+                    font-size: 20px;
+                }
+                p{
+                    color: red;
+                }
+            }
             .btnWrapper{
                 display: flex;
                 gap: 100px;
-                justify-content: c;
                 align-items: center;
+                padding: 30px 0px;
                 .mybookBtn{
-                    display:flex;
-                    flex-direction: column;
-
+                    button{
+                        font-size: 20px;
+                    }
+                }
+                .reviewBtn{
+                    button{
+                        font-size: 20px;
+                    }
                 }
             }
+        }
+    }
+    .introBook{
+        padding: 30px;
+        h4{
+            font-size: 20px;
+            padding-bottom: 20px;
+        }
+        p{
+            font-family: 'text';
+            line-height: 35px;
         }
     }
     

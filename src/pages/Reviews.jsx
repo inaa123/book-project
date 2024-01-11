@@ -36,9 +36,9 @@ function Reviews() {
             </div>
             <ul className='reviewList'>
                 <li>
-                {review && review.map((el) => (
-                    <ReviewListItem key={el.id} post={el}/>
-                ))}
+                    {review && review.map((el) => (
+                        <ReviewListItem key={el.id} post={el}/>
+                    ))}
                 </li>
             </ul>
         </ReviewsContainer>

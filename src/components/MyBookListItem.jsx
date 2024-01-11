@@ -37,18 +37,19 @@ function MyBookListItem({post, state}) {
 
 export default MyBookListItem
 
-const MyBookItem = styled.li`
-    display: block;
+const MyBookItem = styled.div`
     border : solid 1px rgba(0,0,0,0.5);
-    border-radius: 15%;
-    width : 300px;
-    height: 300px;
-    padding: 20px;
+    border-radius: 30px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 200px;
     justify-content: center;
-    flex-wrap: wrap;
-    flex-shrink: 0;
-    flex-basis: 30%;
+    align-items: center;
     img{
-        width : 100px;
+        width : 150px;
+        height: 200px;
+        padding-bottom: 30px;
     }
 `
