@@ -1,6 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
+import { RiDoubleQuotesL } from "react-icons/ri";
+import { RiDoubleQuotesR } from "react-icons/ri";
+
 
 function ReviewListItem({post}) {
 
@@ -25,10 +28,12 @@ function ReviewListItem({post}) {
         <ReviewItem onClick={onDetail}>
             <div className='contentWrap'>
                 <div className='contentTop'>
-                    <p>{post.userName}</p>
+                    <p className='text'>{post.userName}</p>
                 </div>
                 <div className='content'>
-                    <span>"</span><p>{post.text}</p><span>"</span>
+                    <span className='quotes'><RiDoubleQuotesL /></span>
+                    <p className='text'>{post.text}</p>
+                    <span className='quotes'><RiDoubleQuotesR /></span>
                 </div>
                 <div className='contentBottom'>
                     <p className='bookTitle'>
@@ -50,7 +55,6 @@ const ReviewItem = styled.div`
     border: solid 1px rgba(0,0,0,0.5);
     border-radius: 30px;
     padding: 30px;
-    /* width: 50%; */
     display: flex;
     width: 200px;
     height: auto;
@@ -67,8 +71,17 @@ const ReviewItem = styled.div`
         .content{
             display: flex;
             justify-content: center;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
+            align-items: center;
+            padding: 20px 0px;
+            .quotes{
+                font-size: 24px;
+                
+            }
+            .text{
+                font-family: 'text';
+                font-size: 18px;
+                margin : 0px 10px;
+            }
         }
 
         .contentBottom{

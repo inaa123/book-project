@@ -69,32 +69,39 @@ function DetailBook() {
                 <div className='title'>
                     <h3>{title}</h3>
                 </div>
-                <div className='content'> 
-                    <img src={image} alt={title}/>
-                    <div className='subContent'>
-                        <p>{author}</p>
-                        <p>{publisher}</p>
+                <div className='content'>
+                    <div className='thumbnail'>
+                        <img src={image} alt={title}/>
                     </div>
-                    <div className='btnWrapper'>
-                        <select value={selected} onChange={handleSelect}>
-                            <option value="" disabled>상태</option>
-                            {selectList.map((item, index) => (
-                                <option key={index} value={item.value}>{item.name}</option>
-                            ))}
-                        </select>
-                        <button onClick={onClickEvent}>기록함추가</button>
-                        <button onClick={onWriteReview}>한마디작성</button>
-                        
-                        {!selected && isClick && <p>상태를 선택하세요!</p>}
-                    </div>
+                    <div className='detailContent'>
+                        <div className='bookData'>
+                            <p><span>저자</span>{author}</p>
+                            <p><span>출판사</span>{publisher}</p>
+                        </div>
+                        <div className='btnWrapper'>
+                            <div className='mybookBtn'>
+                                <select value={selected} onChange={handleSelect}>
+                                    <option value="" disabled>상태</option>
+                                    {selectList.map((item, index) => (
+                                        <option key={index} value={item.value}>{item.name}</option>
+                                    ))}
+                                </select>
+                                <button onClick={onClickEvent}>기록함추가</button>
+                            </div>
+                            <div className='reviewBtn'>
+                                <button onClick={onWriteReview}>한마디작성</button>
+                            </div>
+                        </div>
+                        <div className='stateMsg'>
+                            {!selected && isClick && <p>상태를 선택하세요!</p>}
+                        </div>
+                    </div>{/*detailContent*/}
                 </div>
-                <div className='content2'>
+                <div className='introBook'>
                     <p>{description}</p>
                 </div>
             </DetailPage>
-            
         </div>
-        /* 책제목, 표지, 저자, 출판사 / 상태 : 읽는중, 읽은책 / 확인(submit) */
     )
 }
 
@@ -103,20 +110,42 @@ export default DetailBook
 const DetailPage = styled.div`
     .title{
         font-size: 40px;
+        padding-bottom: 30px;
     }
     .content{
         display: flex;
-        
-        /* flex-direction: column; */
-        img{
-            max-width : 400px;
-            width: 100%;
+        gap : 60px;
+        .thumbnail{
+            width : 300px;
+            height : 350px;
         }
-        .subContent{
+        .detailContent{
             display: flex;
-        }
-        .btnWrapper{
-            display: block;
+            flex-direction: column;
+            gap: 150px;
+            margin-top: 50px;
+            .bookData{
+                p{
+                    font-size: 20px;
+                    margin-bottom: 20px;
+                    span{
+                        font-size: 14px;
+                        margin-right: 30px;
+                    }
+                }
+            }
+            .btnWrapper{
+                display: flex;
+                gap: 100px;
+                justify-content: c;
+                align-items: center;
+                .mybookBtn{
+                    display:flex;
+                    flex-direction: column;
+
+                }
+            }
         }
     }
+    
 `

@@ -7,7 +7,6 @@ function WriteReview() {
     const [bookText, setBookText] = useState('');
 
     const state = useLocation().state;
-    // const email = state;
     const {isbn, author, title, image} =state;
 
     const navigate = useNavigate();
@@ -15,7 +14,6 @@ function WriteReview() {
     useEffect(()=>{
         onUserState((user) => {
             setUser(user)
-            // console.log(user.displayName)
         })
     })
 

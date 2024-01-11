@@ -2,7 +2,7 @@
 @font-face {
     font-family: 'NotoSans';
     src: url('./fonts/NotoSansKR-Regular.eot');
-    src : url('./fonts/NotoSansKR-Regular.eot#iefix') format('embededopnentype'),
+    src : url('./fonts/NotoSansKR-Regular.eot#iefix') format('embedded-opentype'),
         url('./fonts/NotoSansKR-Regular.woff2') format('woff2');
     font-style : normal;
     font-weight : 300;
@@ -11,8 +11,26 @@
 @font-face {
     font-family: 'Pretendard';
     src: url('./fonts/Pretendard-Regular.eot');
-    src : url('./fonts/Pretendard-Regular.eot#iefix') format('embededopnentype'),
+    src : url('./fonts/Pretendard-Regular.eot#iefix') format('embedded-opentype'),
         url('./fonts/Pretendard-Regular.woff2') format('woff2');
     font-style : normal;
     font-weight : 300;
+}
+
+@font-face{
+    font-family: 'logo';
+    src: url('./fonts/MuseumClassicMediumA.eot');
+    src : url('./fonts/MuseumClassicMediumA.eot#iefix') format('embedded-opentype'),
+        url('./fonts/MuseumClassicMediumA.woff2') format('woff2');
+        font-style: normal;
+        font-weight : 300;
+}
+
+@font-face {
+    font-family: 'text';
+    src: url('./fonts/ChosunCentennialA1.eot');
+    src : url('./fonts/ChosunCentennialA1.eot#iefix') format('embedded-opentype'),
+        url('./fonts/ChosunCentennialA1.woff2') format('woff2');
+        font-style: normal;
+        font-weight: 300;
 }

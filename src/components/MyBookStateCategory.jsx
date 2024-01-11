@@ -7,8 +7,6 @@ function MyBookStateCategory({state, onSelect}) {
         { name : 'done', text : '읽은책'}
     ];
 
-
-
     return (
         <CategoryContainer>
             {categories.map(el => (
@@ -26,23 +24,19 @@ export default MyBookStateCategory
 
 const CategoryContainer = styled.div`
     display: flex;
+    /* gap : 5px; */
+    align-items: center;
 `
 
 const Category = styled.div`
-    font-size: 1.125rem;
+  font-size: 16px;
   cursor: pointer;
   white-space: pre;
-  text-decoration: none;
-  color: inherit;
-  padding-bottom: 0.25rem;
- 
-  /* &:hover {
-    color: #495057;
-  } */
+  padding : 10px 20px;
   &.active{
-    font-weight: bold;
-      &:hover {
-        font-weight: bold;
-      }
+    /* font-weight: bold; */
+    border-radius: 30px;
+    background : green;
+    color: white;
   }
 `

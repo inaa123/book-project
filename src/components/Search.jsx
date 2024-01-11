@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import instance from '../api/axios';
 import styled from 'styled-components';
 import SearchBookList from './SearchBookList';
+import { LuSearch } from "react-icons/lu";
 
 function Search() {
     const [keywords, setKeywords] = useState('');
@@ -47,14 +48,14 @@ function Search() {
         <div className='container'>
            <SearchForm>
                 <div className='search'>
-                <input 
-                    type='text'
-                    className='searchKeword'
-                    value={keywords}
-                    placeholder='책이름을 입력하세요.'
-                    onChange={bookSearchKeyword}
-                />
-                <button onClick={searchBookEvent}>검색</button>
+                    <input 
+                        type='text'
+                        className='searchKeyword'
+                        value={keywords}
+                        placeholder='검색할 책을 입력해주세요.'
+                        onChange={bookSearchKeyword}
+                    />
+                    <button className='searchBtn' onClick={searchBookEvent}><LuSearch /></button>
                 </div>
                 <div className='searchText'>
                     {isLoading && <p>Loading...</p>}
@@ -77,15 +78,29 @@ function Search() {
 export default Search
 
 const SearchForm = styled.div`
-    display:flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    .searchKeword{
-        width: 300px;
-        height: 30px;
-        border-radius: 10px;
-        border: solid 2px;
-        border-color: #c17c74;
+    .search{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        .searchKeyword{
+            width: 300px;
+            height: 50px;
+            border-radius: 10px;
+            border: solid 3px;
+            border-color: #0c4825;
+            font-size: 20px;
+        }
+        .searchBtn{
+            font-size: 30px;
+        }
     }
+    .searchText{
+        display: flex;
+        justify-content: center;
+    }
+    .searchList{
+        display: flex;
+        padding: 2% 10%;
+    }
+    
 `

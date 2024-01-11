@@ -8,13 +8,13 @@ function DetailReview() {
     const {id, title, text, userName} = state;
     const [user, setUser] = useState('');
     const [comment, setComment] = useState();
+    const [commentList, setCommentList] = useState([]);
 
     useEffect(()=>{
         onUserState((user) => {
             setUser(user)
         })
     })
-
     const onSubmitEvent = async (e) => {
         e.preventDefault();
         try{
@@ -26,12 +26,17 @@ function DetailReview() {
         }
     }
 
-    const {data : comments, isLoading, error} = useQuery(
-        `/review/${id}/comments`, 
-        () => getComments(id));
-    
-    if(isLoading) return <p>Loading comments...</p>
-    if(error) return <p>Error loading comments</p>
+    useEffect(()=>{
+        const fetchComments = async () => {
+            try {
+                const comments = await getComments(id);
+                setCommentList(comments);
+            }catch(error){
+                console.error(error)
+            }
+        }
+        fetchComments()
+    }, [commentList])
     
     return (
         <div className='container'>
@@ -67,7 +72,7 @@ function DetailReview() {
                 </form>
 
                 <ul>
-                    {comments && comments.map(el=>(
+                    {commentList && commentList.map(el=>(
                             <li>
                                 <div>
                                     {el.userName} : {el.text}

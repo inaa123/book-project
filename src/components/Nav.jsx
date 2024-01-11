@@ -29,7 +29,7 @@ function Nav() {
                     <li onClick={onMyBook}>기록함</li>
                     <li><Link to='/review'>한마디</Link></li>
                 </ul>
-                <h1 className='logo'><Link to='/'>ㅊㄱㅊㄱ</Link></h1>
+                <h1 className='logo'><Link to='/'>차곡차곡</Link></h1>
                 <div className='userWrapper'>
                     {user ? (
                         <>
@@ -72,6 +72,11 @@ const HeaderContainer = styled.header`
                     color: #FFD700;
                 }
             }
+        }
+        .logo{
+            font-family: logo;
+            font-size: 24px;
+            font-weight: lighter;
         }
         .userWrapper{
             display: flex;
