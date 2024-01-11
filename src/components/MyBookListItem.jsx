@@ -44,9 +44,10 @@ const MyBookItem = styled.div`
     display: flex;
     flex-direction: column;
     height: auto;
-    min-height: 200px;
+    max-height: 500px;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     img{
         width : 150px;
         height: 200px;

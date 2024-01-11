@@ -86,6 +86,7 @@ const ReviewItem = styled.div`
         .contentBottom{
             display: flex;
             align-items: center;
+            justify-content: space-between;
             .bookTitle{
                 font-weight: bold;
             }

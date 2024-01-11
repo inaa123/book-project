@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { addReview, onUserState } from '../api/firebase';
 import { useLocation, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 function WriteReview() {
     const [user, setUser] = useState();
@@ -30,28 +31,61 @@ function WriteReview() {
 
 
     return (
-        <div className='container'>
+        <ReviewForm className='container'>
             <form onSubmit={onSubmit}>
-                <div className='write-box'>
+                <div className='title'>
                     <label>제목</label>
                     <p>{title}</p>
-                    <label>저자</label>
-                    <p>{author}</p>
                 </div>
-                <div className='write-box'>
+                <div className='writeBox'>
                     <label>내용</label>
                     <textarea
                         value={bookText}
+                        maxLength={30}
                         onChange={(e)=>setBookText(e.target.value)}
                     />
                 </div>
                 <button 
                     type='submit' 
-                    className='submit-btn'>
+                    className='submitBtn'>
                 작성하기</button>
             </form>
-        </div>
+        </ReviewForm>
     )
 }
 
 export default WriteReview
+
+const ReviewForm = styled.div`
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 100px;
+        font-size: 20px;
+
+        .title{
+        display: flex;
+        gap: 20px;
+        }
+        .writeBox{
+            display: flex;
+            gap: 30px;
+            textarea{
+                width: 500px;
+                height: 80px;
+            }
+            
+        }
+        .submitBtn{
+            display: flex;
+            justify-content: center;
+            width: 80px;
+            padding: 10px;
+            background-color: #0c4825;
+            color: white;
+            border-radius: 10px;
+        }
+    }
+    
+`
