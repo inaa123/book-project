@@ -3,8 +3,13 @@ import styled from 'styled-components'
 import { getAllBooks,  onUserState } from '../api/firebase';
 import MyBookListItem from '../components/MyBookListItem';
 import MyBookStateCategory from '../components/MyBookStateCategory';
-import {Swiper, SwiperSlide} from 'swiper/react';
 
+import {Swiper, SwiperSlide} from 'swiper/react';
+import {Pagination} from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import '../style/SwiperCustomCss.css';
 
 function MyBook() {
     const [user, setUser] = useState('');
@@ -32,23 +37,38 @@ function MyBook() {
             }
         }
         fetchBooks()
-    }, [bookList])
+    }, [user.uid])
 
 
     return (
         <MyBookContainer className='container'>
             <MyBookStateCategory state={state} onSelect={onSelect} />
-            
-            <ul>
-                
-                <li>
+            <Swiper 
+                className='swiper'
+                spaceBetween={10}
+                slidesPerView={1}
+                // slidesPerGroup={4}
+                pagination
+                breakpoints={{
+                    768: {
+                      slidesPerView: 3,
+                      slidesPerGroup:3
+                    },
+                    1200: {
+                      slidesPerView: 4,
+                      slidesPerGroup:4
+                    },
+                  }}
+                  
+                modules={[Pagination]} 
+            >
                 {!bookList && <p>{msg}</p>}
                 {bookList && bookList.map((el,index) => (
+                    <SwiperSlide key={index} >
                         <MyBookListItem key={el.id} post={el} state={state} />
-                    
+                    </SwiperSlide>
                 ))}
-                </li>
-            </ul>
+            </Swiper>
         </MyBookContainer>
     )
 }
@@ -56,12 +76,5 @@ function MyBook() {
 export default MyBook
 
 const MyBookContainer = styled.div`
-    ul{
-        margin: 20px auto;
-        li{
-            display: grid;
-            grid-template-columns: repeat(4, minmax(282px, auto));
-            gap: 24px;
-        }
-    }
+    
 `
