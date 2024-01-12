@@ -11,7 +11,7 @@ function SearchBookList({book}) {
         onUserState((user)=>{
             setUser(user);
         })
-    })
+    }, [])
 
     const detailNavigate = () => {
         navigate(`/book/detail/${book.isbn}`, {

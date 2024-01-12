@@ -16,7 +16,7 @@ function WriteReview() {
         onUserState((user) => {
             setUser(user)
         })
-    })
+    }, [])
 
     const onSubmit = async (e) => {
         e.preventDefault();
