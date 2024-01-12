@@ -40,11 +40,10 @@ export default MyBookListItem
 const MyBookItem = styled.div`
     border : solid 1px rgba(0,0,0,0.5);
     border-radius: 30px;
-    padding: 30px;
+    padding: 30px 15px;
     display: flex;
     flex-direction: column;
-    height: auto;
-    max-height: 500px;
+    height: 280px;
     justify-content: center;
     align-items: center;
     overflow: hidden;
