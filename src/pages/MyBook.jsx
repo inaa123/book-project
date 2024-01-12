@@ -15,9 +15,8 @@ function MyBook() {
     const [user, setUser] = useState('');
     const [msg, setMsg] = useState('');
     const [bookList, setBookList] = useState([]);
-    const [state, setState] = useState('');
+    const [state, setState] = useState('all');
     const onSelect = useCallback(state => setState(state), []);
-    
 
     useEffect(()=>{
         onUserState(setUser);
@@ -27,17 +26,30 @@ function MyBook() {
         const fetchBooks = async () => {
             try{
                 const books = await getAllBooks(user.uid);
+                // console.log(state); // all , reading, done
                 if(books){
-                    setBookList(books);
+                    setBookList('');
+                    if(state === 'all') {
+                        // console.log(books); // 9개(전체)
+                        setBookList(books);
+                        console.log(bookList); // []빈배열
+                    }else{
+                        const filterBooks = books.filter((book)=>book.state === state);
+                        setBookList(filterBooks);
+                        console.log(bookList);
+                    }
                 }else{
                     setMsg('기록함이 비어있습니다.')
-                }
+                }     
             }catch(error){
                 console.error(error);
             }
         }
         fetchBooks()
-    }, [user.uid])
+        // if(user.uid){
+        //     fetchBooks()
+        // }
+    }, [user.uid, state])
 
 
     return (
@@ -47,7 +59,6 @@ function MyBook() {
                 className='swiper'
                 spaceBetween={10}
                 slidesPerView={1}
-                // slidesPerGroup={4}
                 pagination
                 breakpoints={{
                     768: {

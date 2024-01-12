@@ -1,8 +1,9 @@
-import React  from 'react'
+import React, { useState }  from 'react'
 import styled from 'styled-components';
 
 function MyBookStateCategory({state, onSelect}) {
     const categories = [
+        { name : 'all', text:'전체'},
         { name : 'reading', text: '읽는중'},
         { name : 'done', text : '읽은책'}
     ];
@@ -14,7 +15,9 @@ function MyBookStateCategory({state, onSelect}) {
                     key={el.name}
                     className={(el.name === state) ? 'active' : ''}
                     onClick={()=>onSelect(el.name)}
-                    >{el.text}</Category>
+                >
+                {el.text}
+                </Category>
             ))}
         </CategoryContainer>
     )
