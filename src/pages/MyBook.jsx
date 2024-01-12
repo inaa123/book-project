@@ -25,10 +25,10 @@ function MyBook() {
     useEffect(()=>{
         const fetchBooks = async () => {
             try{
+                setBookList('');
                 const books = await getAllBooks(user.uid);
                 // console.log(state); // all , reading, done
                 if(books){
-                    setBookList('');
                     if(state === 'all') {
                         // console.log(books); // 9개(전체)
                         setBookList(books);
@@ -45,10 +45,9 @@ function MyBook() {
                 console.error(error);
             }
         }
-        fetchBooks()
-        // if(user.uid){
-        //     fetchBooks()
-        // }
+        if(user.uid){
+            fetchBooks()
+        }
     }, [user.uid, state])
 
 
