@@ -20,7 +20,7 @@ function MyBookListItem({post, state}) {
         })
     }
 
-    const shouldRenderItem = !state || post.state === state;
+    const shouldRenderItem = !state || post.state === state || state === 'all';
 
     return (
         <>
