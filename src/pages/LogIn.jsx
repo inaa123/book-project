@@ -31,7 +31,7 @@ function LogIn() {
         <LoginContainer className='container'>
             <h2 className='title'>로그인</h2>
             <form onSubmit={onLoginEvent}>
-                <div>
+                <div className='login'>
                     <span>이메일</span>
                     <input 
                         type='email' 
@@ -40,7 +40,7 @@ function LogIn() {
                         onChange={(e)=>setEmail(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='login'>
                     <span>비밀번호</span>
                     <input 
                         type='password' 
@@ -50,9 +50,9 @@ function LogIn() {
                     />
                 </div>
                 {errorMsg && <p className='errorTxt'>{errorMsg}</p>}
-                <div className='btn-wrapper'>
-                <button type='submit'>로그인</button>
-                <button><Link to='/signup'>회원가입</Link></button>
+                <div className='btnWrapper'>
+                    <button type='submit'>로그인</button>
+                    <button><Link to='/signup'>회원가입</Link></button>
                 </div>
             </form>
         </LoginContainer>
@@ -67,14 +67,38 @@ const LoginContainer = styled.div`
     display: block;
     text-align: center;
     justify-content: center;
-
-    box-sizing: border-box;
     .title{
         margin-bottom: 40px;
+        font-size: 20px;
     }
     form{
         display: flex;
         flex-direction: column;
         gap: 20px;
+        align-items: center;
+        .login{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            input{
+                padding: 10px;
+                border: solid 1px rgba(0,0,0,0.3);
+                border-radius: 10px;
+            }
+        }
+        .errorTxt{
+            color: red;
+        }
+        .btnWrapper{
+            display: flex;
+            gap: 20px;
+            button{
+                font-size: 16px;
+                a{
+                    color: black;
+                }
+                
+            }
+        }
     }
 `

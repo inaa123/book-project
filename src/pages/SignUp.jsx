@@ -10,8 +10,7 @@ function SignUp() {
 
     const [psError, setPsError] = useState();
     const [emailError, setEmailError] = useState();
-
-    const [emptyInput, setEmptyInput] = useState(false);
+    const [nicknameError, setNickNameError] = useState();
 
     const navigate = useNavigate();
 
@@ -19,38 +18,45 @@ function SignUp() {
         e.preventDefault();
         setPsError('');
         setEmailError('');
+        setNickNameError('')
+
 
         if(!userEmail){
-            setEmailError('이메일을 입력해주세요')
+            setEmailError('이메일을 입력해주세요!')
             return false
         }
         
-        if(userPassword.length < 6){
+        if(!userPassword || userPassword.length < 6){
             setPsError('비밀번호는 6글자 이상이어야 합니다!!')
             return
         }
 
-        try{
-            const result = await signupEmail(userEmail, userPassword, userNickName);
-            if(result.error){
-                if(result.error === 'auth/email-already-in-use'){
-                    setEmailError('현재 사용중인 이메일입니다!!')
-                }
-                return
-            }else{
-                navigate('/login')
-            }
-        }catch(error){
-            console.error(error);
+        if(!userNickName){
+            setNickNameError('닉네임을 입력해주세요!')
         }
-        
+
+        if(userEmail && userPassword && userNickName){
+            try{
+                const result = await signupEmail(userEmail, userPassword, userNickName);
+                if(result.error){
+                    if(result.error === 'auth/email-already-in-use'){
+                        setEmailError('현재 사용중인 이메일입니다!!')
+                    }
+                    return
+                }else{
+                    navigate('/login')
+                }
+            }catch(error){
+                console.error(error);
+            }
+        }
     }
 
     return (
         <SignUpContainer className='container'>
             <h2 className='title'>회원가입</h2>
             <form onSubmit={onSignUpEvent}>
-                <div>
+                <div className='signup'>
                     <span>이메일</span>
                     <input 
                         type='email' 
@@ -58,9 +64,9 @@ function SignUp() {
                         value={userEmail}
                         onChange={(e)=>setUserEmail(e.target.value)}
                     />
-                    {emailError && <span className='errorTxt'>{emailError}</span>}
                 </div>
-                <div>
+                {emailError && <span className='errorTxt'>{emailError}</span>}
+                <div className='signup'>
                     <span>비밀번호</span>
                     <input
                         type='password' 
@@ -68,9 +74,9 @@ function SignUp() {
                         value={userPassword}
                         onChange={(e)=>setUserPassword(e.target.value)}
                     />
-                    {psError && <p className='errorTxt'>{psError}</p>}
                 </div>
-                <div>
+                {psError && <p className='errorTxt'>{psError}</p>}
+                <div className='signup'>
                     <span>닉네임</span>
                     <input 
                         type='text' 
@@ -79,8 +85,8 @@ function SignUp() {
                         onChange={(e)=>setUserNickName(e.target.value)}
                     />
                 </div>
+                {nicknameError && <p className='errorTxt'>{nicknameError}</p>}
                 <button type='submit'>완료</button>
-                {emptyInput && <p>회원정보를 입력하세요!</p>}
             </form>
         </SignUpContainer>
     )
@@ -94,14 +100,30 @@ const SignUpContainer = styled.div`
     display: block;
     text-align: center;
     justify-content: center;
-
-    box-sizing: border-box;
     .title{
         margin-bottom: 40px;
+        font-size: 20px;
     }
     form{
         display: flex;
         flex-direction: column;
         gap: 20px;
+        align-items: center;
+        .signup{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            input{
+                padding: 10px;
+                border: solid 1px rgba(0,0,0,0.3);
+                border-radius: 10px;
+            }
+        }
+        .errorTxt{
+            color: red;
+        }
+        button{
+            font-size: 16px;
+        }
     }
 `
