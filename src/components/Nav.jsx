@@ -22,6 +22,11 @@ function Nav() {
         }
     }
 
+    const logoutEvent = () => {
+        logoutEmail().then(setUser);
+        navigate('/');
+    }
+
     return (
         <HeaderContainer >
             <nav>
@@ -34,7 +39,7 @@ function Nav() {
                     {user ? (
                         <>
                             <span>{user.displayName}<span className='subText'>님 환영합니다</span></span> 
-                            <button className='logoutBtn' onClick={()=>logoutEmail().then(setUser)}>로그아웃</button>
+                            <button className='logoutBtn' onClick={logoutEvent}>로그아웃</button>
                         </>
                     ) : (
                         <>
