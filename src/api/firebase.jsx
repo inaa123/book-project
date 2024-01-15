@@ -37,7 +37,6 @@ export function onUserState(callback){
     onAuthStateChanged(auth, async(user)=> {
         if(user){
             callback(user)
-            // console.log(user)
         }else{
             callback(null)
         }
@@ -66,9 +65,8 @@ export async function signupEmail(email, password, name){
 }
 
 //게시글 저장
-//addQuote(user, title, writer, text) isbn:책id
 export async function addReview(user, userName, isbn, title, writer, text, image){
-    const id = uuid(); //게시글id, npm install uuid , yarn add uuid
+    const id = uuid();
     const postData = {
         id,
         isbn,
