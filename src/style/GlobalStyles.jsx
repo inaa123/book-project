@@ -64,11 +64,16 @@ const GlobalStyle = createGlobalStyle`
         font-family : 'Pretendard';
     }
     body{
-        /* background-color: #0d341d; */
-        /* background-color: #0c4825; */
         background-color: #f9f7eb;
         font-family : 'Pretendard';
+        overflow-y : scroll;
+        -ms-overflow-style: none;  // 인터넷 익스플로어
+        scrollbar-width: none; // 파이어폭스
     }
+    ::-webkit-scrollbar {
+        display: none; //크롬, 사파리, 오페라, 엣지
+    }
+    
     input{
         background: transparent;
         border : none;
