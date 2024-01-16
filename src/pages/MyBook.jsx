@@ -21,7 +21,7 @@ function MyBook() {
 
     useEffect(()=>{
         onUserState(setUser);
-    },[])
+    }, [])
 
     useEffect(()=>{
         const fetchBooks = async () => {
