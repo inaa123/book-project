@@ -53,25 +53,23 @@ export default ReviewListItem
 const ReviewItem = styled.div`
     border: solid 1px rgba(0,0,0,0.5);
     border-radius: 30px;
-    padding: 30px;
+    padding: 30px 20px;
     display: flex;
     height: auto;
     min-height: 200px;
     
     .contentWrap{
-        /* display: block; */
-        position: relative;
         .contentTop{
             padding-bottom: 20px;
             border-bottom: solid 1px black;
             margin-bottom: 20px;
         }
-
         .content{
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px 0px;
+            height: 70px;
             .quotes{
                 font-size: 22px;
             }
@@ -79,17 +77,17 @@ const ReviewItem = styled.div`
                 font-family: 'batang';
                 font-weight: 500;
                 font-size: 18px;
-                margin : 0px 10px;
+                padding: 0px 5px;
             }
         }
-
         .contentBottom{
             display: flex;
             align-items: center;
             justify-content: space-between;
-            
+            margin-top: 10px;
             .bookTitle{
                 font-style: italic;
+                padding-right: 10px;
             }
             img{
                 width: 60px;
