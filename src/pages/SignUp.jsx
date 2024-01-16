@@ -86,7 +86,7 @@ function SignUp() {
                     />
                 </div>
                 {nicknameError && <p className='errorTxt'>{nicknameError}</p>}
-                <button type='submit'>회원가입</button>
+                <button type='submit'>가입하기</button>
             </form>
         </SignUpContainer>
     )
