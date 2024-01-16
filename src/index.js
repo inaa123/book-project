@@ -15,7 +15,6 @@ import DetailReview from './pages/DetailReview';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-//const routes = createBrowserRouter([
 const routes = createBrowserRouter([
   {
     path : '/', 
@@ -30,7 +29,6 @@ const routes = createBrowserRouter([
       {path : '/review', element : <Reviews/>},
       {path : '/review/write/:id', element : <WriteReview/>},
       {path : '/review/detail/:id', element : <DetailReview/>},
-      
     ]
   }
 ])
