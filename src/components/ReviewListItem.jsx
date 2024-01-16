@@ -54,15 +54,15 @@ const ReviewItem = styled.div`
     border: solid 1px rgba(0,0,0,0.5);
     border-radius: 30px;
     padding: 30px 20px;
-    display: flex;
     height: auto;
     min-height: 200px;
     
     .contentWrap{
+        display: block;
         .contentTop{
             padding-bottom: 20px;
             border-bottom: solid 1px black;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         .content{
             display: flex;
