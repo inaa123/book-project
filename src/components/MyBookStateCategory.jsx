@@ -39,7 +39,6 @@ const Category = styled.div`
   white-space: pre;
   padding : 10px 20px;
   &.active{
-    /* font-weight: bold; */
     border-radius: 30px;
     background : green;
     color: white;
