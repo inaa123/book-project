@@ -107,12 +107,13 @@ const MyBookContainer = styled.div`
     align-items: center;
     button{
         width: auto;
+        padding : 15px 20px;
         background-color: #0c4825;
-        border-radius: 30px;;
+        border-radius: 20px;;
         color: white;
+        letter-spacing: 2px;
         line-height: 15px;
         font-size: 16px;
-        padding : 15px 20px;
     }
 }
 .swiper{

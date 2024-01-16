@@ -52,28 +52,27 @@ const ReviewsContainer = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px; 
-        border-bottom: solid 1px black;
+        padding-bottom: 16px;
+        border-bottom: solid 1px #75737368;
         button{
             width: auto;
             background-color: #0c4825;
-            padding: 15px 30px;
+            padding : 15px 20px;
             border-radius: 20px;
             color: white;
-            letter-spacing: 3px;
-            line-height: 20px;
+            letter-spacing: 2px;
+            line-height: 15px;
             font-size: 16px;
-            font-weight: 500;
         }
     }
  
     .reviewList{
-        margin: 50px auto;
+        margin: 40px auto;
         li{
             display: grid;
             grid-template-columns: repeat(4, minmax(282px, auto));
             gap: 24px;
-            cursor: pointer
+            cursor: pointer;
         }
     }
 `
