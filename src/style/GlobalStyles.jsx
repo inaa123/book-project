@@ -76,11 +76,10 @@ const GlobalStyle = createGlobalStyle`
     }
     .container{
         max-width : 1200px;
-        margin: 0px auto;
+        margin: 50px auto;
         padding : 100px 5%;
         border-radius: 10px;
-        /* background-color: #f2e9c7; */
-        /* background-color: #eee7c9; */
+        
     }
 `
 

@@ -2,29 +2,38 @@ import React, { useState } from 'react'
 import instance from '../api/axios';
 import styled from 'styled-components';
 import SearchBookList from './SearchBookList';
+
 import { LuSearch } from "react-icons/lu";
+import { MdClear } from "react-icons/md";
 
 function Search() {
     const [keywords, setKeywords] = useState('');
     const [bookList, setBookList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [showClearBtn, setShowClearBtn] = useState(false);
 
     const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy'
     const URL = `${PROXY}/v1/search/book.json`;
 
     const bookSearchKeyword = (e) => {
         setKeywords(e.target.value);
+        if(e.target.value.trim()){
+            setError('')
+            setShowClearBtn(true);
+        }else{
+            setShowClearBtn(false)
+        }
     }
 
     const searchBookEvent = async () => {
-        if (!keywords.trim()) {
-            console.log('검색어 없음');
-            return;
-        }
         setIsLoading(true);
         setError(null);
         try {
+            if (!keywords.trim()) {
+                setError('검색어가 없습니다.')
+                return;
+            }
             // Append keywords to the URL
             const res = await instance.get(`${URL}?query=${encodeURIComponent(keywords)}`);
             console.log(res);
@@ -43,18 +52,30 @@ function Search() {
         }
     };
     
+    const clearEvent = (e) => {
+        e.preventDefault();
+        setKeywords('');
+        setShowClearBtn(false)
+    }
 
     return (
         <div className='container'>
            <SearchForm>
                 <div className='search'>
-                    <input 
-                        type='text'
-                        className='searchKeyword'
-                        value={keywords}
-                        placeholder='검색할 책을 입력해주세요.'
-                        onChange={bookSearchKeyword}
-                    />
+                    <div className='inputWrap'>
+                        <input 
+                            type='text'
+                            className='searchKeyword'
+                            value={keywords}
+                            placeholder='검색할 책을 입력해주세요.'
+                            onChange={bookSearchKeyword}
+                        />
+                        {showClearBtn &&
+                            <button className='clearBtn' onClick={clearEvent}>
+                                <MdClear />
+                            </button>
+                        }
+                    </div>
                     <button className='searchBtn' onClick={searchBookEvent}><LuSearch /></button>
                 </div>
                 <div className='searchText'>
@@ -82,17 +103,29 @@ const SearchForm = styled.div`
         display: flex;
         justify-content: center;
         gap: 10px;
-        .searchKeyword{
-            width: 300px;
-            height: 50px;
-            border-radius: 10px;
-            border: solid 3px;
-            border-color: #0c4825;
-            font-size: 20px;
-        }
         .searchBtn{
             font-size: 30px;
         }
+        .inputWrap{
+            position: relative;
+            .searchKeyword{
+                width: 300px;
+                height: 50px;
+                border-radius: 10px;
+                border: solid 3px;
+                border-color: #0c4825;
+                font-size: 20px;
+                padding : 0px 40px 0px 20px;
+            }
+            .clearBtn{
+                font-size: 20px;
+                position: absolute;
+                top: 16px;
+                right: 8px;
+                padding-left : 10px;
+            }
+        }
+        
     }
     .searchText{
         display: flex;

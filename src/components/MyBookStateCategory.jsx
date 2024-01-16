@@ -19,6 +19,7 @@ function MyBookStateCategory({state, onSelect}) {
                 {el.text}
                 </Category>
             ))}
+            
         </CategoryContainer>
     )
 }
@@ -29,6 +30,7 @@ const CategoryContainer = styled.div`
     display: flex;
     /* gap : 5px; */
     align-items: center;
+    
 `
 
 const Category = styled.div`

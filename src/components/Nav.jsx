@@ -59,9 +59,12 @@ const HeaderContainer = styled.header`
     background-color: #0c4825;
     color: #f9f7eb;
     cursor: pointer;
+    position: fixed;
+    top:0;
+    width: 100%;
     font-size: 18px;
     a, button{
-            color: #f9f7eb;
+        color: #f9f7eb;
     }
     nav{
         max-width : 1200px;

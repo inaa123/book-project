@@ -1,15 +1,15 @@
 import React, { useCallback,  useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { getAllBooks,  onUserState } from '../api/firebase';
 import MyBookListItem from '../components/MyBookListItem';
 import MyBookStateCategory from '../components/MyBookStateCategory';
+import styled from 'styled-components'
 
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Pagination} from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-import '../style/SwiperCustomCss.css';
+import { useNavigate } from 'react-router-dom';
 
 function MyBook() {
     const [user, setUser] = useState('');
@@ -17,6 +17,7 @@ function MyBook() {
     const [bookList, setBookList] = useState([]);
     const [state, setState] = useState('all');
     const onSelect = useCallback(state => setState(state), []);
+    const navigate = useNavigate();
 
     useEffect(()=>{
         onUserState(setUser);
@@ -26,17 +27,22 @@ function MyBook() {
         const fetchBooks = async () => {
             try{
                 setBookList('');
+                setMsg('')
                 const books = await getAllBooks(user.uid);
-                // console.log(state); // all , reading, done
-                if(books){
+                if(books.length > 0){
                     if(state === 'all') {
-                        // console.log(books); // 9개(전체)
                         setBookList(books);
-                        console.log(bookList); // []빈배열
                     }else{
                         const filterBooks = books.filter((book)=>book.state === state);
-                        setBookList(filterBooks);
-                        console.log(bookList);
+                        if(filterBooks.length > 0){
+                            setBookList(filterBooks);
+                        }else{
+                            if(state === 'reading'){
+                                setMsg('현재 읽는 중인 책이 없습니다.')
+                            }else if(state === 'done'){
+                                setMsg('다 읽은 책이 없습니다.')
+                            }
+                        }
                     }
                 }else{
                     setMsg('기록함이 비어있습니다.')
@@ -50,10 +56,19 @@ function MyBook() {
         }
     }, [user.uid, state])
 
-
+    const onClickEvent = () => {
+        if(user){
+            navigate(`/`)
+        }else{
+            navigate(`/login`)
+        }
+    }
     return (
         <MyBookContainer className='container'>
-            <MyBookStateCategory state={state} onSelect={onSelect} />
+            <div className='mybookTop'>
+                <MyBookStateCategory state={state} onSelect={onSelect} />
+                <button onClick={onClickEvent}>추가하기</button>
+            </div>
             <Swiper 
                 className='swiper'
                 spaceBetween={10}
@@ -72,7 +87,7 @@ function MyBook() {
                   
                 modules={[Pagination]} 
             >
-                {!bookList && <p>{msg}</p>}
+                {!bookList && <p className='msg'>{msg}</p>}
                 {bookList && bookList.map((el,index) => (
                     <SwiperSlide key={index} >
                         <MyBookListItem key={el.id} post={el} state={state} />
@@ -86,5 +101,36 @@ function MyBook() {
 export default MyBook
 
 const MyBookContainer = styled.div`
-    
+.mybookTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button{
+        width: auto;
+        background-color: #0c4825;
+        border-radius: 30px;;
+        color: white;
+        line-height: 15px;
+        font-size: 16px;
+        padding : 15px 20px;
+    }
+}
+.swiper{
+    padding: 20px 0px;
+    .msg{
+        padding: 10px 20px;
+    }
+}
+
+.swiper-pagination{
+    bottom: 0px!important;
+    display: flex;
+    text-align: center;
+}
+.swiper-pagination .swiper-pagination-bullet{
+    width: 100%;
+    height: 3px;
+    border-radius: 0;
+    background: gray;
+}
 `
