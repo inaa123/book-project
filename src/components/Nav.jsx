@@ -91,7 +91,6 @@ const HeaderContainer = styled.header`
             align-items: center;
             gap: 20px;
             button{
-                /* font-size: 16px; */
                 &:hover{
                     color: #FFD700;
                 }
