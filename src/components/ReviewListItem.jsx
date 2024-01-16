@@ -43,7 +43,6 @@ function ReviewListItem({post}) {
                     </p>
                     <img src={post.image}/>
                 </div>
-                
             </div>
         </ReviewItem>
     )
@@ -60,7 +59,8 @@ const ReviewItem = styled.div`
     min-height: 200px;
     
     .contentWrap{
-        display: block;
+        /* display: block; */
+        position: relative;
         .contentTop{
             padding-bottom: 20px;
             border-bottom: solid 1px black;
@@ -73,11 +73,11 @@ const ReviewItem = styled.div`
             align-items: center;
             padding: 20px 0px;
             .quotes{
-                font-size: 24px;
-                
+                font-size: 22px;
             }
             .text{
-                font-family: 'text';
+                font-family: 'batang';
+                font-weight: 500;
                 font-size: 18px;
                 margin : 0px 10px;
             }
@@ -87,8 +87,9 @@ const ReviewItem = styled.div`
             display: flex;
             align-items: center;
             justify-content: space-between;
+            
             .bookTitle{
-                font-weight: bold;
+                font-style: italic;
             }
             img{
                 width: 60px;
