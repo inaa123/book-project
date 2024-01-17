@@ -5,11 +5,13 @@ import { onUserState } from '../api/firebase';
 
 function SearchBookList({book}) {
     const [user, setUser] = useState();
+    const [newAuthor, setNewAuthor] = useState('');
     const navigate = useNavigate();
 
     useEffect(()=>{
         onUserState((user)=>{
             setUser(user);
+            setNewAuthor(book.author.replaceAll('^', ','));
         })
     }, [])
 
@@ -19,7 +21,7 @@ function SearchBookList({book}) {
                 isbn : book.isbn,
                 title : book.title,
                 image : book.image,
-                author : book.author,
+                author : newAuthor,
                 publisher : book.publisher,
                 description : book.description,
             }
@@ -33,7 +35,7 @@ function SearchBookList({book}) {
             </div>
             <div className='bookWrap'>
                 <h3>{book.title}</h3>
-                <p>{book.author}</p>
+                <p>{newAuthor}</p>
                 <p>{book.publisher}</p>
             </div>
         </SearchResult>
