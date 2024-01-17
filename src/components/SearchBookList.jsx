@@ -51,7 +51,6 @@ const SearchResult = styled.div`
     padding: 20px 0px;
     border-bottom: solid 1px rgba(0,0,0,0.1);
     .searchImg{
-
         img{
             width: 180px;
             height: 250px;

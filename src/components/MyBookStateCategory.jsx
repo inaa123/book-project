@@ -28,9 +28,7 @@ export default MyBookStateCategory
 
 const CategoryContainer = styled.div`
     display: flex;
-    /* gap : 5px; */
     align-items: center;
-    
 `
 
 const Category = styled.div`

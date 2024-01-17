@@ -6,7 +6,6 @@ function MyBookListItem({post, state}) {
     const navigate = useNavigate();
 
     const moveDetailBook = () => {
-        // console.log(post.state) //done, reading
         navigate(`/book/detail/${post.isbn}`, {
             state : {
                 isbn : post.isbn,
@@ -45,6 +44,7 @@ const MyBookItem = styled.div`
     height: 280px;
     justify-content: center;
     align-items: center;
+    text-align: center;
     overflow: hidden;
     img{
         width : 150px;

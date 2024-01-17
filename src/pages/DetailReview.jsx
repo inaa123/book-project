@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { addComments, getComments, onUserState } from '../api/firebase';
-import { useQuery } from 'react-query';
 import styled from 'styled-components';
 
 function DetailReview() {

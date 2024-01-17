@@ -105,8 +105,7 @@ function DetailBook() {
                                     <p>한마디</p></button>
                             </div>
                         </div>
-                        
-                    </div>{/*detailContent*/}
+                    </div>
                 </div>
                 <div className='introBook'>
                     <h4>책소개</h4>
@@ -137,7 +136,6 @@ const DetailPage = styled.div`
                 width : 300px;
                 height : 400px;
             }
-            
         }
         .detailContent{
             display: flex;
