@@ -14,10 +14,9 @@ function DetailBook() {
     const {isbn, image, title, author, publisher, description} = state;
 
     const today = new Date();
-    const postDate = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`
-    console.log(postDate);
+    const postDate = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 
-     const selectList = [
+    const selectList = [
         {value : "reading", name : "읽는중"},
         {value : "done", name : "읽은책"}
     ]

@@ -36,10 +36,8 @@ function Search() {
             }
             // Append keywords to the URL
             const res = await instance.get(`${URL}?query=${encodeURIComponent(keywords)}`);
-            console.log(res);
             if (res.headers['content-type']?.includes('application/json')) {
                 setBookList(res.data.items); // Assuming 'items' is the correct field in the response
-                console.log(bookList);
             } else {
                 console.error(res);    
                 setError('No data available');

@@ -16,7 +16,6 @@ function LogIn() {
         try{
             const result = await loginEmail(email, password);
             if(result){
-                console.log(email);
                 navigate('/')
             }else{
                 setErrorMsg('이메일이나 비밀번호가 일치하지 않습니다.')

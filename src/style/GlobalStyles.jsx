@@ -84,7 +84,6 @@ const GlobalStyle = createGlobalStyle`
         margin: 50px auto;
         padding : 100px 5%;
         border-radius: 10px;
-        
     }
 `
 
