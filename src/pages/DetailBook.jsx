@@ -9,23 +9,24 @@ function DetailBook() {
     const [user, setUser] = useState();
     const [selected, setSelected] = useState('');
     const [isClick, setIsClick] = useState(false);
+    const navigate = useNavigate();
     const state = useLocation().state;
     const {isbn, image, title, author, publisher, description} = state;
+
+    const today = new Date();
+    const postDate = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`
+    console.log(postDate);
 
      const selectList = [
         {value : "reading", name : "읽는중"},
         {value : "done", name : "읽은책"}
     ]
 
-    const navigate = useNavigate();
-
     useEffect(()=>{
         onUserState((user) => {
             setUser(user)
-            // console.log(user)
-            // console.log(selected)
-        })
-    })
+        });
+    }, [])
 
     const onClickEvent = async (e) => {
         e.preventDefault();
@@ -36,7 +37,7 @@ function DetailBook() {
             if(selected && setIsClick){
                 try{
                     setIsClick(false);
-                    await addBooks(isbn, image, title, author, publisher, description, selected, user.uid);
+                    await addBooks(isbn, image, title, author, publisher, description, selected, user.uid, postDate);
                 }catch(error){
                     console.error(error);
                 }finally{
@@ -53,7 +54,8 @@ function DetailBook() {
                     title : title,
                     author : author,
                     isbn : isbn,
-                    image : image
+                    image : image,
+                    date : postDate,
                 }
             })
         }else{
@@ -81,6 +83,7 @@ function DetailBook() {
                             <p><span>출판사</span>{publisher}</p>
                         </div>
                         <div className='selectBox'>
+                            <span>상태</span>
                             <select value={selected} onChange={handleSelect}>
                                 <option value="" disabled>상태</option>
                                 {selectList.map((item, index) => (
@@ -156,6 +159,10 @@ const DetailPage = styled.div`
                 display: flex;
                 align-items: center;
                 gap : 10px;
+                span{
+                    font-size: 14px;
+                    margin-right: 30px;
+                }
                 select{
                     font-size: 20px;
                 }

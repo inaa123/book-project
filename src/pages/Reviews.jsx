@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
 import styled from 'styled-components'
 import { getReviews, onUserState } from '../api/firebase'
 import { useNavigate } from 'react-router-dom'
@@ -7,18 +6,29 @@ import ReviewListItem from '../components/ReviewListItem'
 
 function Reviews() {
     const [user, setUser] = useState();
+    const [reviewList, setReviewList] = useState([]);
     const navigate = useNavigate();
-
-    const {data : review} = useQuery({
-        queryKey : 'review',
-        queryFn : getReviews
-    })
 
     useEffect(()=>{
         onUserState((user) => {
             setUser(user)
         })
-    })
+    }, [])
+
+    useEffect(()=>{
+        const orderReviews = async () => {
+            try{
+                const reviews = await getReviews();
+                const sortedReviews = reviews.sort(function(a, b) {
+                    return new Date(b.date) - new Date(a.date)
+                })
+                setReviewList(sortedReviews);
+            }catch(error){
+                console.error(error)
+            }
+        }
+        orderReviews()
+    }, [])
 
     const onWrite = () => {
         if(user){
@@ -36,7 +46,7 @@ function Reviews() {
             </div>
             <ul className='reviewList'>
                 <li>
-                    {review && review.map((el) => (
+                    {reviewList && reviewList.map((el) => (
                         <ReviewListItem key={el.id} post={el}/>
                     ))}
                 </li>
@@ -56,10 +66,10 @@ const ReviewsContainer = styled.div`
         border-bottom: solid 1px #75737368;
         button{
             width: auto;
-            background-color: #0c4825;
             padding : 15px 20px;
-            border-radius: 20px;
+            background-color: #0c4825;
             color: white;
+            border-radius: 20px;
             letter-spacing: 2px;
             line-height: 15px;
             font-size: 16px;

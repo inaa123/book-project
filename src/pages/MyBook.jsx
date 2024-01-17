@@ -29,11 +29,14 @@ function MyBook() {
                 setBookList('');
                 setMsg('')
                 const books = await getAllBooks(user.uid);
-                if(books.length > 0){
+                const sortedBooks = books.sort(function(a, b) {
+                    return new Date(b.date) - new Date(a.date)
+                })
+                if(sortedBooks.length > 0){
                     if(state === 'all') {
-                        setBookList(books);
+                        setBookList(sortedBooks);
                     }else{
-                        const filterBooks = books.filter((book)=>book.state === state);
+                        const filterBooks = sortedBooks.filter((book)=>book.state === state);
                         if(filterBooks.length > 0){
                             setBookList(filterBooks);
                         }else{

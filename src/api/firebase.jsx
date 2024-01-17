@@ -65,7 +65,7 @@ export async function signupEmail(email, password, name){
 }
 
 //게시글 저장
-export async function addReview(user, userName, isbn, title, writer, text, image){
+export async function addReview(user, userName, isbn, title, writer, text, image, date){
     const id = uuid();
     const postData = {
         id,
@@ -75,7 +75,8 @@ export async function addReview(user, userName, isbn, title, writer, text, image
         title,
         writer,
         text,
-        image
+        image,
+        date
     }
     return set(ref(database, `/review/${id}`), postData)
 }
@@ -92,7 +93,7 @@ export async function getReviews(){
 }
 
 //addMyBook
-export async function addBooks(isbn, image, title, author, publisher, description, state, user){
+export async function addBooks(isbn, image, title, author, publisher, description, state, user, date){
     return set(ref(database, `myBooks/${user}/${isbn}`), {
         isbn,
         image,
@@ -101,7 +102,8 @@ export async function addBooks(isbn, image, title, author, publisher, descriptio
         publisher,
         description,
         state,
-        user
+        user,
+        date,
     })
 }
 
@@ -117,13 +119,14 @@ export async function getAllBooks(userId){
 }
 
 //댓글작성
-export async function addComments(reviewId, user, userName, text){
+export async function addComments(reviewId, user, userName, text, date){
     const commentId = uuid();
     const postData = {
         commentId,
         user,
         userName,
-        text
+        text,
+        date
     }
     return set(ref(database, `/review/${reviewId}/comments/${commentId}`), postData)
 }

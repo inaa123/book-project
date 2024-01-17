@@ -8,7 +8,7 @@ function WriteReview() {
     const [bookText, setBookText] = useState('');
 
     const state = useLocation().state;
-    const {isbn, author, title, image} =state;
+    const {isbn, author, title, image, date} =state;
 
     const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function WriteReview() {
         e.preventDefault();
         
         try{
-            await addReview(user.email, user.displayName, isbn, title, author, bookText, image);
+            await addReview(user.email, user.displayName, isbn, title, author, bookText, image, date);
             navigate('/review')
         }catch(error){
             console.error(error)
@@ -74,8 +74,8 @@ const ReviewForm = styled.div`
             textarea{
                 width: 500px;
                 height: 80px;
+                padding : 10px;
             }
-            
         }
         .submitBtn{
             display: flex;
