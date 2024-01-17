@@ -12,6 +12,7 @@ function Search() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [showClearBtn, setShowClearBtn] = useState(false);
+    const [isClick, setIsClick] = useState(false);
 
     const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy'
     const URL = `${PROXY}/v1/search/book.json`;
@@ -36,6 +37,7 @@ function Search() {
             }
             // Append keywords to the URL
             const res = await instance.get(`${URL}?query=${encodeURIComponent(keywords)}`);
+            setIsClick(true);
             if (res.headers['content-type']?.includes('application/json')) {
                 setBookList(res.data.items); // Assuming 'items' is the correct field in the response
             } else {
@@ -53,7 +55,8 @@ function Search() {
     const clearEvent = (e) => {
         e.preventDefault();
         setKeywords('');
-        setShowClearBtn(false)
+        setShowClearBtn(false);
+        setIsClick(false);
     }
 
     return (
@@ -80,15 +83,17 @@ function Search() {
                     {isLoading && <p>Loading...</p>}
                     {error && <p>{error}</p>}
                 </div>
-                <ul className='searchList'>
-                    <li>
-                        {Array.isArray(bookList) && bookList.map((book) => (
-                            <SearchBookList 
-                                key={book.id} book={book}
-                            />
-                        ))}
-                    </li>
-                </ul>
+                {isClick &&
+                    <ul className='searchList'>
+                        <li>
+                            {Array.isArray(bookList) && bookList.map((book) => (
+                                <SearchBookList 
+                                    key={book.id} book={book}
+                                />
+                            ))}
+                        </li>
+                    </ul>
+                }
            </SearchForm>
         </div>
     );
