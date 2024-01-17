@@ -91,7 +91,7 @@ const ReviewItem = styled.div`
             }
             img{
                 width: 60px;
-                height: 80px;
+                height: 85px;
             }
         }
     }

@@ -96,7 +96,7 @@ export default SignUp
 
 const SignUpContainer = styled.div`
     height: 500px;
-    margin-top: 100px;
+    margin-top: 10%;
     display: block;
     text-align: center;
     justify-content: center;

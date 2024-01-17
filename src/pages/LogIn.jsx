@@ -63,7 +63,7 @@ export default LogIn
 
 const LoginContainer = styled.div`
     height: 500px;
-    margin-top: 100px;
+    margin-top: 10%;
     display: block;
     text-align: center;
     justify-content: center;
