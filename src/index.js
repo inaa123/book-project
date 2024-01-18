@@ -29,6 +29,7 @@ const routes = createBrowserRouter([
       {path : '/review', element : <Reviews/>},
       {path : '/review/write/:id', element : <WriteReview/>},
       {path : '/review/detail/:id', element : <DetailReview/>},
+      // {path : '/search', element : <Search/>}
     ]
   }
 ])
