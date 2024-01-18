@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from "firebase/auth";
-import {get, getDatabase, ref, set} from 'firebase/database';
+import {get, getDatabase, ref, remove, set} from 'firebase/database';
 import { v4 as uuid} from 'uuid';
 
 
@@ -36,11 +36,31 @@ export async function logoutEmail() {
 export function onUserState(callback){
     onAuthStateChanged(auth, async(user)=> {
         if(user){
-            callback(user)
+            try{
+                // callback(user)
+                const updateUser = await adminUser(user);
+                callback(updateUser);
+            }catch(error){
+                console.error(error);
+            }
         }else{
             callback(null)
         }
     })
+}
+
+async function adminUser(user){
+    try{
+        const snapshot = await get(ref(database, 'admin'));
+        if(snapshot.exists()){
+            const admins = snapshot.val();
+            const isAdmin = admins.includes(user.email);
+            return {...user, isAdmin}
+        }
+        return user
+    }catch(error){
+        console.error(error);
+    }
 }
 
 //회원가입
@@ -59,7 +79,6 @@ export async function signupEmail(email, password, name){
     }catch(error){
         return {error : error.code}
     }
-    
 }
 
 //게시글 저장
@@ -110,6 +129,7 @@ export async function getAllBooks(userId){
     return get(ref(database, `myBooks/${userId}`))
     .then((snapshot) => {
         if(snapshot.exists()){
+            // console.log(Object.values(snapshot.val())[0].title);
             return Object.values(snapshot.val());
         }
         return[]
@@ -138,4 +158,35 @@ export async function getComments(reviewId){
         }
         return []
     })
+}
+
+// 최신도서저장 (관리자,)
+export async function latestBooks(isbn, image, title, author, publisher, description, pubdate, user,  date){
+
+    return set(ref(database, `/latestBooks/${isbn}`))
+}
+
+//추천도서저장(관리자)
+export async function recBooks(isbn, image, title, author, publisher, description, pubdate, user, date){
+    let id = 0;
+    if(id === 0 || id > 0){
+        id += 1;
+    }
+    const postData = {
+        id,
+        isbn,
+        image,
+        title,
+        author,
+        publisher,
+        description,
+        pubdate,
+        user,
+        date
+    }
+    return set(ref(database, `/recBooks/${isbn}`), postData)
+}
+
+export async function delRecBooks(isbn){
+    return remove(ref(database, `/recBooks/${isbn}`))
 }
