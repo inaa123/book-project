@@ -11,7 +11,7 @@ function DetailBook() {
     const [isClick, setIsClick] = useState(false);
     const navigate = useNavigate();
     const state = useLocation().state;
-    const {isbn, image, title, author, publisher, description} = state;
+    const {isbn, image, title, author, publisher, description, pubdate} = state;
 
     const today = new Date();
     const postDate = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
@@ -81,8 +81,18 @@ function DetailBook() {
                             <p><span>저자</span>{author}</p>
                             <p><span>출판사</span>{publisher}</p>
                         </div>
+                        <div className='btnWrapper'>
+                            <div className='mybookBtn'>
+                                <button onClick={onClickEvent}>
+                                <LuBookPlus /><p>기록함추가</p></button>
+                            </div>
+                            <div className='reviewBtn'>
+                                <button onClick={onWriteReview}>
+                                <FaPaperPlane /><p>한마디</p></button>
+                            </div>
+                        </div>
                         <div className='selectBox'>
-                            <span>상태</span>
+                            {/* <span>상태</span>*/}
                             <select value={selected} onChange={handleSelect}>
                                 <option value="" disabled>상태</option>
                                 {selectList.map((item, index) => (
@@ -93,17 +103,7 @@ function DetailBook() {
                                 {!selected && isClick && <p>상태를 선택하세요!</p>}
                             </div>
                         </div>
-                        <div className='btnWrapper'>
-                            <div className='mybookBtn'>
-                                <button onClick={onClickEvent}>
-                                <LuBookPlus /><p>기록함추가</p></button>
-                            </div>
-                            <div className='reviewBtn'>
-                                <button onClick={onWriteReview}>
-                                    <FaPaperPlane />
-                                    <p>한마디</p></button>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div className='introBook'>

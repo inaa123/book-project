@@ -24,6 +24,7 @@ function SearchBookList({book}) {
                 author : newAuthor,
                 publisher : book.publisher,
                 description : book.description,
+                pubdate : book.pubdate,
             }
         })
     }
