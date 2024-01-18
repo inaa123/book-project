@@ -60,7 +60,7 @@ function Search() {
     }
 
     return (
-        <div className='container'>
+        <div>
            <SearchForm>
                 <div className='search'>
                     <div className='inputWrap'>
