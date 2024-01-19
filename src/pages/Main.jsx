@@ -9,30 +9,39 @@ import {Pagination} from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useNavigate } from 'react-router-dom';
 
 function Main() {
     const [user,setUser] = useState('');
     const [bookList, setBookList] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(()=>{
-        onUserState(setUser);
+        onUserState((user) => {
+            setUser(user);
+            if(!user){
+                navigate(`/login`);
+            }
+        })
     }, [])
 
-    useEffect(()=>{
-        const fetchReadingBook = async () => {
-            try{
-                const books = await getAllBooks(user.uid);
-                // console.log(books);
-                const filterBooks = books.filter((book,)=>book.state === 'reading');
-                setBookList(filterBooks);
-            }catch(error){
-                console.error(error);
-            }
-        }
-        if(user){
-            fetchReadingBook()
-        }
-    },[user.uid])
+    // useEffect(()=>{
+    //     const fetchReadingBook = async () => {
+    //         try{
+    //             const books = await getAllBooks(user.uid);
+    //             // console.log(books);
+    //             const filterBooks = books.filter((book)=>book.state === 'reading');
+    //             // console.log(filterBooks);
+    //             setBookList(filterBooks);
+    //             // console.log(bookList);
+    //         }catch(error){
+    //             console.error(error);
+    //         }
+    //     }
+    //     if(user){
+    //         fetchReadingBook()
+    //     }
+    // },[user.uid])
 
     const newBookList = () => {
         const result = [];
@@ -54,7 +63,7 @@ function Main() {
                         <button>더보기</button>
                     </div>
                     <div className='readingBookList'>
-                    {newBookList()}
+                        {/* {newBookList()} */}
                     </div>
                 </div>
             </div>
@@ -72,14 +81,14 @@ const MainContainer = styled.div`
         }
         .readingBookList{
             /* gap: 20px; */
-        display: grid;
-        grid-template-columns: repeat(4, minmax(25%, auto));   
-        grid-template-rows: "1fr ";
-        /* flex-wrap: wrap; */
-        .bookItem{
-            width: 25%;
-            flex-shrink: 0;
-        }
+            display: grid;
+            grid-template-columns: repeat(4, minmax(25%, auto));   
+            grid-template-rows: "1fr ";
+            /* flex-wrap: wrap; */
+            .bookItem{
+                width: 25%;
+                flex-shrink: 0;
+            }
         }
         
     }
