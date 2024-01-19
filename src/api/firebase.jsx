@@ -37,7 +37,7 @@ export function onUserState(callback){
     onAuthStateChanged(auth, async(user)=> {
         if(user){
             try{
-                // callback(user)
+                // callback(user);
                 const updateUser = await adminUser(user);
                 callback(updateUser);
             }catch(error){
@@ -167,11 +167,8 @@ export async function latestBooks(isbn, image, title, author, publisher, descrip
 }
 
 //추천도서저장(관리자)
-export async function recBooks(isbn, image, title, author, publisher, description, pubdate, user, date){
-    let id = 0;
-    if(id === 0 || id > 0){
-        id += 1;
-    }
+export async function addRecBooks(id, isbn, image, title, author, publisher, description, pubdate, user, date){
+    
     const postData = {
         id,
         isbn,
@@ -186,6 +183,18 @@ export async function recBooks(isbn, image, title, author, publisher, descriptio
     }
     return set(ref(database, `/recBooks/${isbn}`), postData)
 }
+
+export async function getRecBooks(){
+    return get(ref(database, `/recBooks`))
+    .then((snapshot) => {
+        if(snapshot.exists()){
+            return Object.values(snapshot.val());
+        }
+        return []
+    })
+}
+
+
 
 export async function delRecBooks(isbn){
     return remove(ref(database, `/recBooks/${isbn}`))

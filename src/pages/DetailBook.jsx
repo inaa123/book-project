@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { addBooks, onUserState } from '../api/firebase';
+import { addBooks, addRecBooks, getRecBooks, onUserState } from '../api/firebase';
 import styled from 'styled-components';
 import { FaPaperPlane } from "react-icons/fa";
 import { LuBookPlus } from "react-icons/lu";
@@ -8,7 +8,7 @@ import { LuBookPlus } from "react-icons/lu";
 function DetailBook() {
     const [user, setUser] = useState();
     const [selected, setSelected] = useState('');
-    const [isClick, setIsClick] = useState(false);
+    const [isClick, setIsClick] = useState(false); 
     const navigate = useNavigate();
     const state = useLocation().state;
     const {isbn, image, title, author, publisher, description, pubdate} = state;
@@ -20,7 +20,6 @@ function DetailBook() {
         {value : "reading", name : "읽는중"},
         {value : "done", name : "읽은책"}
     ]
-
     useEffect(()=>{
         onUserState((user) => {
             setUser(user)
@@ -66,6 +65,27 @@ function DetailBook() {
         setSelected(e.target.value);
     }
 
+    const addRecEvent = async (e) => {
+        e.preventDefault();
+        const bookList = await getRecBooks();
+        const id = bookList.length + 1;
+        if(!user){
+            navigate('/login')
+        }else{
+            setIsClick(true)
+            if(setIsClick){
+                try{
+                    setIsClick(false);
+                    await addRecBooks(id, isbn, image, title, author, publisher, description, pubdate, user.uid, postDate)
+                }catch(error){
+                    console.error(error);
+                }finally{
+                    navigate('/')
+                }
+            }
+        }
+    }
+
     return (
         <div className='container'>
             <DetailPage>
@@ -81,6 +101,20 @@ function DetailBook() {
                             <p><span>저자</span>{author}</p>
                             <p><span>출판사</span>{publisher}</p>
                         </div>
+                        {user && user.isAdmin &&(
+                            <div className='btnWrapper'>
+                                <div className='recBtn'>
+                                    <button onClick={addRecEvent}>
+                                    <LuBookPlus /><p>추천책</p></button>
+                                </div>
+                                <div className='reviewBtn'>
+                                    <button onClick={onWriteReview}>
+                                    <FaPaperPlane /><p>gg</p></button>
+                                </div>
+                            </div>
+                        )}
+                        {user && !user.isAdmin && (
+                        <>
                         <div className='btnWrapper'>
                             <div className='mybookBtn'>
                                 <button onClick={onClickEvent}>
@@ -103,7 +137,8 @@ function DetailBook() {
                                 {!selected && isClick && <p>상태를 선택하세요!</p>}
                             </div>
                         </div>
-                        
+                        </>
+                        )}
                     </div>
                 </div>
                 <div className='introBook'>

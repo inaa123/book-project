@@ -60,7 +60,7 @@ function Search() {
     }
 
     return (
-        <div>
+        // <div className='container'>
            <SearchForm>
                 <div className='search'>
                     <div className='inputWrap'>
@@ -95,7 +95,7 @@ function Search() {
                     </ul>
                 }
            </SearchForm>
-        </div>
+        // </div>
     );
 }
 

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import ErrorPage from './pages/ErrorPage';
 import MyBook from './pages/MyBook';
 import LogIn from './pages/LogIn';
@@ -12,8 +12,23 @@ import DetailBook from './pages/DetailBook';
 import Reviews from './pages/Reviews';
 import WriteReview from './pages/WriteReview';
 import DetailReview from './pages/DetailReview';
+import { onUserState } from './api/firebase';
+import Nav from './components/Nav';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const ProtectRouter = ({checkUser, children}) => {
+  const [user, setUser] = useState();
+
+  useEffect(()=>{
+   onUserState((user) => setUser(user)) 
+  }, [])
+
+  if(user && checkUser){
+    return <Navigate to='/' replace/>
+  }
+  return children
+}
 
 const routes = createBrowserRouter([
   {

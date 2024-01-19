@@ -3,9 +3,8 @@ import { Link, Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav';
 import GlobalStyle from './style/GlobalStyles';
-// import Search from './components/Search';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import Main from './pages/Main';
+import Home from './pages/Home';
 
 const queryClient = new QueryClient();
 
@@ -17,7 +16,8 @@ function App() {
       <Nav/>
       
       <Routes>
-        <Route path='/' element = {<Main/>}/>
+        {/* <Route path='/' element = { <Main/> }/> */}
+        <Route path='/' element = { <Home/> }/> 
       </Routes>
 
       <Outlet/>
