@@ -63,6 +63,7 @@ const HeaderContainer = styled.header`
     top:0;
     width: 100%;
     font-size: 18px;
+    z-index: 999;
     a, button{
         color: #f9f7eb;
     }

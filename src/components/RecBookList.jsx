@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { delRecBooks, getRecBooks, onUserState } from '../api/firebase';
 import MyBookListItem from './MyBookListItem';
-import RecBookItem from './RecBookItem';
 
 import {Swiper, SwiperSlide} from 'swiper/react';
 
@@ -55,9 +54,8 @@ function RecBookList() {
     return (
         <RecBookContainer>
             <div className='container'>
-                <div className='rebBookTop'>
+                <div className='recBookTop'>
                     <h3>추천도서</h3>
-                    <button>더보기</button>
                 </div>
                 <Swiper
                     className='swiper'
@@ -89,5 +87,6 @@ function RecBookList() {
 export default RecBookList
 
 const RecBookContainer = styled.div`
-    
+    .recBookTop{
+    }
 `

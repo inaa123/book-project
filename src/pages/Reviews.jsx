@@ -77,11 +77,11 @@ const ReviewsContainer = styled.div`
     }
  
     .reviewList{
-        margin: 40px auto;
+        padding: 40px 0px;
         li{
             display: grid;
-            grid-template-columns: repeat(4, minmax(282px, auto));
-            gap: 24px;
+            grid-template-columns: repeat(4, minmax(25%, auto));
+            gap: 10px;
             cursor: pointer;
         }
     }

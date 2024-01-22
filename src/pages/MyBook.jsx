@@ -16,6 +16,7 @@ function MyBook() {
     const [msg, setMsg] = useState('');
     const [bookList, setBookList] = useState([]);
     const [state, setState] = useState('all');
+    
     const onSelect = useCallback(state => setState(state), []);
     const navigate = useNavigate();
 
@@ -41,7 +42,7 @@ function MyBook() {
                             setBookList(filterBooks);
                         }else{
                             if(state === 'reading'){
-                                setMsg('현재 읽는 중인 책이 없습니다.')
+                                setMsg('현재 읽고 있는 책이 없습니다.')
                             }else if(state === 'done'){
                                 setMsg('다 읽은 책이 없습니다.')
                             }
