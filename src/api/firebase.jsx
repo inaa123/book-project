@@ -161,10 +161,10 @@ export async function getComments(reviewId){
 }
 
 // 최신도서저장 (관리자,)
-export async function latestBooks(isbn, image, title, author, publisher, description, pubdate, user,  date){
+// export async function latestBooks(isbn, image, title, author, publisher, description, pubdate, user,  date){
 
-    return set(ref(database, `/latestBooks/${isbn}`))
-}
+//     return set(ref(database, `/latestBooks/${isbn}`))
+// }
 
 //추천도서저장(관리자)
 export async function addRecBooks(id, isbn, image, title, author, publisher, description, pubdate, user, date){
