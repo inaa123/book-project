@@ -4,7 +4,7 @@ import './App.css';
 import Nav from './components/Nav';
 import GlobalStyle from './style/GlobalStyles';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import Home from './pages/Home';
+import Main from './pages/Main';
 
 const queryClient = new QueryClient();
 
@@ -16,8 +16,7 @@ function App() {
       <Nav/>
       
       <Routes>
-        {/* <Route path='/' element = { <Main/> }/> */}
-        <Route path='/' element = { <Home/> }/> 
+        <Route path='/' element = { <Main/> }/>
       </Routes>
 
       <Outlet/>
