@@ -83,7 +83,9 @@ function Search() {
                     {isLoading && <p>Loading...</p>}
                     {error && <p>{error}</p>}
                 </div>
+                
                 {isClick &&
+                    <ResultContainer>
                     <ul className='searchList'>
                         <li>
                             {Array.isArray(bookList) && bookList.map((book) => (
@@ -93,7 +95,9 @@ function Search() {
                             ))}
                         </li>
                     </ul>
+                    </ResultContainer>
                 }
+                
            </SearchForm>
         // </div>
     );
@@ -134,9 +138,15 @@ const SearchForm = styled.div`
         display: flex;
         justify-content: center;
     }
+`
+const ResultContainer = styled.div`
+    position: absolute;
+    background-color: #f9f7eb;
+    z-index: 11;
+    width: 100%;
+    height: 100%;
     .searchList{
         display: flex;
         padding: 2% 10%;
     }
-    
 `
