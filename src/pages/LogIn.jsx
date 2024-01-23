@@ -27,11 +27,12 @@ function LogIn() {
     }
 
     return (
-        <LoginContainer className='container'>
+        <LoginContainer >
+            <div className='container'>
             <h2 className='title'>로그인</h2>
             <form onSubmit={onLoginEvent}>
                 <div className='login'>
-                    <span>이메일</span>
+                <div className='userLogin'>
                     <input 
                         type='email' 
                         placeholder='이메일을 입력하세요'
@@ -39,8 +40,7 @@ function LogIn() {
                         onChange={(e)=>setEmail(e.target.value)}
                     />
                 </div>
-                <div className='login'>
-                    <span>비밀번호</span>
+                <div className='userLogin'>
                     <input 
                         type='password' 
                         placeholder='비밀번호를 입력하세요'
@@ -49,11 +49,13 @@ function LogIn() {
                     />
                 </div>
                 {errorMsg && <p className='errorTxt'>{errorMsg}</p>}
+                </div>
                 <div className='btnWrapper'>
                     <button type='submit'>로그인</button>
                     <button><Link to='/signup'>회원가입</Link></button>
                 </div>
             </form>
+            </div>
         </LoginContainer>
     )
 }
@@ -76,27 +78,43 @@ const LoginContainer = styled.div`
         gap: 20px;
         align-items: center;
         .login{
-            display: flex;
-            align-items: center;
-            gap: 20px;
+            display: block;
+            height: 180px;
+        }
+        .userLogin{
+            display: block;
+            height: 70px;
             input{
-                padding: 10px;
+                font-size: 16px;
+                width : 400px;
+                height: 48px;
+                padding: 0px 50px 0px 40px;
                 border: solid 1px rgba(0,0,0,0.3);
                 border-radius: 10px;
+                box-sizing: border-box;
             }
         }
         .errorTxt{
+            font-size: 14px;
             color: red;
+            padding-bottom: 12px;
         }
         .btnWrapper{
             display: flex;
             gap: 20px;
+            justify-content: center;
             button{
+                width: 180px;
+                height: 50px;
                 font-size: 16px;
+                border-radius: 20px;
+                background-color: #0c4825;
+                font-size: 16px;
+                color: white;
+                letter-spacing: 4px;
                 a{
-                    color: black;
+                    color: white;
                 }
-                
             }
         }
     }

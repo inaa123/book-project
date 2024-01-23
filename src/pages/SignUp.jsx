@@ -53,41 +53,40 @@ function SignUp() {
     }
 
     return (
-        <SignUpContainer className='container'>
+        <SignUpContainer >
+            <div className='container'>
             <h2 className='title'>회원가입</h2>
             <form onSubmit={onSignUpEvent}>
                 <div className='signup'>
-                    <span>이메일</span>
                     <input 
                         type='email' 
                         placeholder='이메일을 입력하세요'
                         value={userEmail}
                         onChange={(e)=>setUserEmail(e.target.value)}
                     />
+                    {emailError && <p className='errorTxt'>{emailError}</p>}
                 </div>
-                {emailError && <span className='errorTxt'>{emailError}</span>}
                 <div className='signup'>
-                    <span>비밀번호</span>
                     <input
                         type='password' 
                         placeholder='비밀번호를 입력하세요'
                         value={userPassword}
                         onChange={(e)=>setUserPassword(e.target.value)}
                     />
+                    {psError && <p className='errorTxt'>{psError}</p>}
                 </div>
-                {psError && <p className='errorTxt'>{psError}</p>}
                 <div className='signup'>
-                    <span>닉네임</span>
                     <input 
                         type='text' 
                         placeholder='닉네임을 입력하세요'
                         value={userNickName}
                         onChange={(e)=>setUserNickName(e.target.value)}
                     />
+                    {nicknameError && <p className='errorTxt'>{nicknameError}</p>}
                 </div>
-                {nicknameError && <p className='errorTxt'>{nicknameError}</p>}
                 <button type='submit'>가입하기</button>
             </form>
+            </div>
         </SignUpContainer>
     )
 }
@@ -110,20 +109,32 @@ const SignUpContainer = styled.div`
         gap: 20px;
         align-items: center;
         .signup{
-            display: flex;
-            align-items: center;
-            gap: 20px;
+            display: block;
+            /* align-items: center; */
+            height: 70px;
             input{
-                padding: 10px;
+                font-size: 16px;
+                width : 400px;
+                height: 48px;
+                padding: 0px 50px 0px 40px;
                 border: solid 1px rgba(0,0,0,0.3);
                 border-radius: 10px;
+                box-sizing: border-box;
+            }
+            .errorTxt{
+                font-size: 14px;
+                margin-top: 12px;
+                color: red;
             }
         }
-        .errorTxt{
-            color: red;
-        }
         button{
+            width: 400px;
+            height: 50px;
+            border-radius: 20px;
+            background-color: #0c4825;
             font-size: 16px;
+            color: white;
+            letter-spacing: 4px;
         }
     }
 `
