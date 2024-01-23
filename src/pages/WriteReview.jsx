@@ -8,7 +8,7 @@ function WriteReview() {
     const [bookText, setBookText] = useState('');
 
     const state = useLocation().state;
-    const {isbn, author, title, image, date} =state;
+    const {isbn, author, title, image, date, publisher, description} =state;
 
     const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function WriteReview() {
         e.preventDefault();
         
         try{
-            await addReview(user.email, user.displayName, isbn, title, author, bookText, image, date);
+            await addReview(user.email, user.displayName, isbn, title, author, bookText, image, date, publisher, description);
             navigate('/review')
         }catch(error){
             console.error(error)

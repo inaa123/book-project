@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { addComments, getComments, onUserState } from '../api/firebase';
 import styled from 'styled-components';
 
 function DetailReview() {
     const state = useLocation().state;
-    const {id, title, text, userName} = state;
+    const {id, title, text, userName, image, isbn, author, publisher, description} = state;
     const [user, setUser] = useState('');
     const [comment, setComment] = useState();
     const [commentList, setCommentList] = useState([]);
+
+    const today = new Date();
+    const postDate = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+
+    const navigate = useNavigate();
 
     useEffect(()=>{
         onUserState((user) => {
@@ -18,8 +23,8 @@ function DetailReview() {
     const onSubmitEvent = async (e) => {
         e.preventDefault();
         try{
-            await addComments(id, user.uid, user.displayName
-                , comment);
+            await addComments(id, user.uid, user.displayName, comment, postDate);
+            console.log(user.uid)
             setComment('');
         }catch(error){
             console.error(error)
@@ -30,13 +35,30 @@ function DetailReview() {
         const fetchComments = async () => {
             try {
                 const comments = await getComments(id);
-                setCommentList(comments);
+                const sortedComments = comments.sort(function(a,b){
+                    return new Date(a.date) - new Date(b.date)
+                })
+                setCommentList(sortedComments);
             }catch(error){
                 console.error(error)
             }
         }
         fetchComments()
     }, [commentList])
+
+    const detailNavigate = () => {
+        // console.log(author)
+        navigate(`/book/detail/${isbn}`, {
+            state : {
+                isbn : isbn,
+                title : title,
+                image : image,
+                author : author,
+                publisher : publisher,
+                description : description
+            }
+        })
+    }
     
     return (
         <DetailReviewContainer className='container'>
@@ -45,7 +67,12 @@ function DetailReview() {
                 <p className='writer'>작성자 <span > {userName} </span></p>
             </div>
             <div className='reviewContent'>
-                <p>{text}</p>
+                <div className='reviewText'>
+                    <p>{text}</p>
+                </div>
+                <div className='reviewImg'>
+                    <img src={image} alt='책표지' onClick={detailNavigate}/>
+                </div>
             </div>
             <div className='commentWrap'>
                 <form onSubmit={onSubmitEvent}>
@@ -110,9 +137,15 @@ const DetailReviewContainer = styled.div`
     }
     .reviewContent{
         display: flex;
-        padding: 100px 50px;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 50px;
         font-size: 22px;
         min-height: 80px;
+        .reviewImg{
+            width: 200px;
+            height: auto;
+        }
     }
 
     .commentWrap{

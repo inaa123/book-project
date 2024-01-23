@@ -82,7 +82,7 @@ export async function signupEmail(email, password, name){
 }
 
 //게시글 저장
-export async function addReview(user, userName, isbn, title, writer, text, image, date){
+export async function addReview(user, userName, isbn, title, author, text, image, date, publisher, description){
     const id = uuid();
     const postData = {
         id,
@@ -90,10 +90,12 @@ export async function addReview(user, userName, isbn, title, writer, text, image
         user,
         userName,
         title,
-        writer,
+        author,
         text,
         image,
-        date
+        date,
+        publisher,
+        description,
     }
     return set(ref(database, `/review/${id}`), postData)
 }

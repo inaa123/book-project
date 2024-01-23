@@ -77,7 +77,7 @@ const ReviewsContainer = styled.div`
     }
  
     .reviewList{
-        padding: 40px 0px;
+        padding: 40px 20px 40px 0px;
         li{
             display: grid;
             grid-template-columns: repeat(4, minmax(25%, auto));

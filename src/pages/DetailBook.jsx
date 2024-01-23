@@ -54,6 +54,8 @@ function DetailBook() {
                     isbn : isbn,
                     image : image,
                     date : postDate,
+                    publisher : publisher,
+                    description : description,
                 }
             })
         }else{
