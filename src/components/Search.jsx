@@ -85,16 +85,16 @@ function Search() {
                 </div>
                 
                 {isClick &&
-                    <ResultContainer>
-                    <ul className='searchList'>
-                        <li>
-                            {Array.isArray(bookList) && bookList.map((book) => (
-                                <SearchBookList 
-                                    key={book.id} book={book}
-                                />
-                            ))}
-                        </li>
-                    </ul>
+                    <ResultContainer className='resultContainer'>
+                        <ul className='searchList'>
+                            <li>
+                                {Array.isArray(bookList) && bookList.map((book) => (
+                                    <SearchBookList 
+                                        key={book.id} book={book}
+                                    />
+                                ))}
+                            </li>
+                        </ul>
                     </ResultContainer>
                 }
                 
@@ -138,15 +138,24 @@ const SearchForm = styled.div`
         display: flex;
         justify-content: center;
     }
+
 `
 const ResultContainer = styled.div`
     position: absolute;
     background-color: #f9f7eb;
     z-index: 11;
+    max-width: 1200px;
     width: 100%;
     height: 100%;
     .searchList{
         display: flex;
-        padding: 2% 10%;
+        justify-content: center;
+        padding-top: 20px;
+        li{
+            width: 100%;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        left: 0px;
     }
 `

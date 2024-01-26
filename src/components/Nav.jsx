@@ -34,18 +34,20 @@ function Nav() {
                     <li onClick={onMyBook}>기록함</li>
                     <li><Link to='/review'>한마디</Link></li>
                 </ul>
-                <h1 className='logo'><Link to='/'>차곡차곡</Link></h1>
+                <div className='logo'>
+                    <h1 ><Link to='/'>차곡차곡</Link></h1>
+                </div>
                 <div className='userWrapper'>
                     {user ? (
-                        <>
-                            <span>{user.displayName}<span className='subText'>님 환영합니다</span></span> 
+                        <div>
+                            <span>{user.displayName}님<span className='subText'>환영합니다</span></span> 
                             <button className='logoutBtn' onClick={logoutEvent}>로그아웃</button>
-                        </>
+                        </div>
                     ) : (
-                        <>
+                        <div>
                             <button className='loginBtn' onClick={()=>navigate('/login')}>로그인</button>
                             <button className='signupBtn' onClick={()=>navigate('/signup')}>회원가입</button>
-                        </>
+                        </div>
                     )}
                 </div>
             </nav>
@@ -68,11 +70,14 @@ const HeaderContainer = styled.header`
         color: #f9f7eb;
     }
     nav{
+        display: flex;
+        justify-content: space-around;
         max-width : 1200px;
         margin: 0px auto;
         padding : 40px 10%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         ul{
             display: flex;
             gap : 50px;
@@ -88,21 +93,45 @@ const HeaderContainer = styled.header`
             font-weight: lighter;
         }
         .userWrapper{
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            button{
-                &:hover{
-                    color: #FFD700;
+            div{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                button{
+                    &:hover{
+                        color: #FFD700;
+                    }
+                }
+                span{
+                    cursor: default;
+                    font-size: 16px;
+                    .subText{
+                        font-size: 14px;
+                    }
                 }
             }
-            span{
-                cursor: default;
+            
+        }
+    }
+
+    @media screen and (max-width : 768px){
+        nav{
+            ul{
+                gap: 20px;
                 font-size: 16px;
+            }
+        }
+        .userWrapper{
+            span{
                 .subText{
-                    font-size: 14px;
+                    display: none;
                 }
             }
+        }
+    }
+
+    @media screen and (max-width: 500px){
+        nav{
         }
     }
     

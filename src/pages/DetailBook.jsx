@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { addBooks, addRecBooks, getRecBooks, onUserState } from '../api/firebase';
+import { addBooks, onUserState } from '../api/firebase';
 import styled from 'styled-components';
 import { FaPaperPlane } from "react-icons/fa";
 import { LuBookPlus } from "react-icons/lu";
@@ -67,27 +67,6 @@ function DetailBook() {
         setSelected(e.target.value);
     }
 
-    const addRecEvent = async (e) => {
-        e.preventDefault();
-        const bookList = await getRecBooks();
-        const id = bookList.length + 1;
-        if(!user){
-            navigate('/login')
-        }else{
-            setIsClick(true)
-            if(setIsClick){
-                try{
-                    setIsClick(false);
-                    await addRecBooks(id, isbn, image, title, author, publisher, description, pubdate, user.uid, postDate)
-                }catch(error){
-                    console.error(error);
-                }finally{
-                    navigate('/')
-                }
-            }
-        }
-    }
-
     return (
         <div className='container'>
             <DetailPage>
@@ -100,26 +79,15 @@ function DetailBook() {
                     </div>
                     <div className='detailContent'>
                         <div className='bookData'>
-                            <p><span>저자</span>{author}</p>
+                            
+                            <p><span className='author'>저자</span>{author}</p>
                             <p><span>출판사</span>{publisher}</p>
                         </div>
-                        {user && user.isAdmin &&(
-                            <div className='btnWrapper'>
-                                <div className='recBtn'>
-                                    <button onClick={addRecEvent}>
-                                    <LuBookPlus /><p>추천책</p></button>
-                                </div>
-                                <div className='reviewBtn'>
-                                    <button onClick={onWriteReview}>
-                                    <FaPaperPlane /><p>gg</p></button>
-                                </div>
-                            </div>
-                        )}
-                        {user && !user.isAdmin && (
+                        {user && (
                         <>
                         <div className='btnWrapper'>
                             <div className='mybookBtn'>
-                                <button onClick={onClickEvent}>
+                                <button onClick={onClickEvent} >
                                 <LuBookPlus /><p>기록함추가</p></button>
                             </div>
                             <div className='reviewBtn'>
@@ -128,7 +96,6 @@ function DetailBook() {
                             </div>
                         </div>
                         <div className='selectBox'>
-                            {/* <span>상태</span>*/}
                             <select value={selected} onChange={handleSelect}>
                                 <option value="" disabled>상태</option>
                                 {selectList.map((item, index) => (
@@ -169,7 +136,7 @@ const DetailPage = styled.div`
         .thumbnail{
             margin-bottom: 10px;
             img{
-                width : 300px;
+                width : 280px;
                 height : 400px;
             }
         }
@@ -187,18 +154,23 @@ const DetailPage = styled.div`
                         font-size: 14px;
                         margin-right: 30px;
                     }
+                    .author{
+                        margin-right: 40px;
+                    }
                 }
             }
             .selectBox{
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 gap : 10px;
-                span{
-                    font-size: 14px;
-                    margin-right: 30px;
-                }
                 select{
                     font-size: 20px;
+                }
+                .stateMsg{
+                    width: 100%;
+                    max-width: 180px;
+                    text-align: left;
                 }
                 p{
                     color: red;
@@ -208,6 +180,7 @@ const DetailPage = styled.div`
                 display: flex;
                 gap: 100px;
                 align-items: center;
+                justify-content: center;
                 padding: 30px 0px;
                 .mybookBtn{
                     button{
@@ -223,7 +196,7 @@ const DetailPage = styled.div`
         }
     }
     .introBook{
-        padding: 30px;
+        padding: 50px 30px;
         h4{
             font-size: 20px;
             padding-bottom: 20px;
@@ -234,4 +207,43 @@ const DetailPage = styled.div`
         }
     }
     
+    @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        .title{
+            font-size: 32px;
+        }
+        .content{
+            flex-direction: column;
+            text-align: center;
+            justify-content: center;
+            gap: 30px;
+            padding-bottom: 60px;
+            .detailContent{
+                margin-top: 10px;
+                .bookData{
+                    margin-bottom: 0px;
+                }
+                .btnWrapper{
+                    .mybookBtn{
+                        button{
+                            font-size: 34px;
+                            p{display:none}
+                        }
+                    }
+                    .reviewBtn{
+                        button{
+                            font-size: 34px;
+                            p{display:none}
+                        }
+                    }
+                }
+                .selectBox{
+                    padding-left: 10%;
+                }
+            }
+            
+        }
+    }
 `

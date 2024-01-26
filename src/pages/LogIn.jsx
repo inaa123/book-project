@@ -29,32 +29,37 @@ function LogIn() {
     return (
         <LoginContainer >
             <div className='container'>
-            <h2 className='title'>로그인</h2>
-            <form onSubmit={onLoginEvent}>
-                <div className='login'>
-                <div className='userLogin'>
-                    <input 
-                        type='email' 
-                        placeholder='이메일을 입력하세요'
-                        value={email}
-                        onChange={(e)=>setEmail(e.target.value)}
-                    />
+                <h2 className='title'>로그인</h2>
+                <form onSubmit={onLoginEvent}>
+                    <div className='login'>
+                        <div className='userLogin'>
+                            <input 
+                                type='email' 
+                                placeholder='이메일을 입력하세요'
+                                value={email}
+                                onChange={(e)=>setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className='userLogin'>
+                            <input 
+                                type='password' 
+                                placeholder='비밀번호를 입력하세요'
+                                value={password}
+                                onChange={(e)=>setPassword(e.target.value)}
+                            />
+                        </div>
+                        {errorMsg && <p className='errorTxt'>{errorMsg}</p>}
+                    </div>
+                    <div className='btnWrapper'>
+                        <button type='submit'>로그인</button>
+                        <button type='button'><Link to='/signup'>회원가입</Link></button>
+                    </div>
+                </form>
+                <div className='tempMsg'>
+                    <p>체험해보세요!</p>
+                    <p>아이디: test@test.com</p>
+                    <p>비번 : 123456</p>
                 </div>
-                <div className='userLogin'>
-                    <input 
-                        type='password' 
-                        placeholder='비밀번호를 입력하세요'
-                        value={password}
-                        onChange={(e)=>setPassword(e.target.value)}
-                    />
-                </div>
-                {errorMsg && <p className='errorTxt'>{errorMsg}</p>}
-                </div>
-                <div className='btnWrapper'>
-                    <button type='submit'>로그인</button>
-                    <button><Link to='/signup'>회원가입</Link></button>
-                </div>
-            </form>
             </div>
         </LoginContainer>
     )
@@ -79,7 +84,7 @@ const LoginContainer = styled.div`
         align-items: center;
         .login{
             display: block;
-            height: 180px;
+            height: 160px;
         }
         .userLogin{
             display: block;
@@ -117,5 +122,9 @@ const LoginContainer = styled.div`
                 }
             }
         }
+    }
+    .tempMsg{
+        padding-top: 50px;
+        font-size: 14px;
     }
 `

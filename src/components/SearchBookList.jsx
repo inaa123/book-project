@@ -49,13 +49,13 @@ const SearchResult = styled.div`
     width: 100%;
     display: flex;
     gap: 60px;
-    padding: 20px 0px;
     border-bottom: solid 1px rgba(0,0,0,0.1);
+    padding : 20px 0px;
     .searchImg{
         img{
             width: 180px;
             height: 250px;
-            margin-left: 50px;
+            padding-left: 10%;
         }
     }
     .bookWrap{
@@ -73,6 +73,23 @@ const SearchResult = styled.div`
         p{
             padding-bottom: 15px;
             font-size: 18px;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        
+        .searchImg{
+            img{
+                width: 150px;
+                height: 220px;
+            }
+        }
+        .bookWrap{
+            h3{
+                font-size: 24px;
+            }
+            p{
+                font-size: 16px;
+            }
         }
     }
 `

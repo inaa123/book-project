@@ -52,7 +52,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     }
     img{
-    display: block;
+    /* display: block; */
     width: 100%;
     }
 
@@ -81,9 +81,8 @@ const GlobalStyle = createGlobalStyle`
     }
     .container{
         max-width : 1200px;
-        margin: 50px auto;
-        padding : 100px 5%;
-        border-radius: 10px;
+        margin: 100px auto;
+        padding : 100px 20px;
     }
 `
 

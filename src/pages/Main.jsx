@@ -14,6 +14,7 @@ import 'swiper/css';
 function Main() {
     const [user,setUser] = useState('');
     const [bookList, setBookList] = useState([]);
+    const [msg, setMsg] = useState('');
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -30,23 +31,19 @@ function Main() {
             try{
                 const books = await getAllBooks(user.uid);
                 const filterBooks = books.filter((book)=>book.state === 'reading');
-                setBookList(filterBooks);
+                if(filterBooks.length > 0){
+                    setBookList(filterBooks);
+                }else{
+                    setMsg('현재 읽고 있는 책이 없습니다!!')
+                }
             }catch(error){
                 console.error(error);
             }
         }
-        if(user){
+        if(user.uid){
             fetchReadingBook()
         }
     },[user.uid])
-
-    // const newBookList = () => {
-    //     const result = [];
-    //     for(let i = 0; i < bookList.length; i++){
-    //         result.push(<MyBookListItem post={bookList[i]} state={bookList[i].state}/>)
-    //     }
-    //     return result;
-    // }
 
     return (
         <MainContainer>
@@ -55,7 +52,7 @@ function Main() {
                     <Search />
                 </div>
                 <div className='readingBookWrap'>
-                    <div className='button'>
+                    <div className='readingTop'>
                         <h3>현재 읽는 중</h3>
                         <button onClick={()=>navigate(`/mybook/${user.uid}`)}>더보기</button>
                     </div>
@@ -64,12 +61,6 @@ function Main() {
                         spaceBetween={10}
                         slidesPerView={1}
                         allowTouchMove={false}
-                        // loop
-                        // autoplay={{
-                        //     delay:2000,
-                        // }}
-                        // speed={2000}
-                        // modules={[Autoplay]}
                         breakpoints={{
                             768: {
                             slidesPerView: 3,
@@ -81,8 +72,8 @@ function Main() {
                             },
                         }}
                     >
+                        {bookList.length === 0 && <p className='emptyMsg'>{msg}</p>}
                         <div className='readingBookList'>
-                            {!bookList && <p>현재 읽고 있는 책이 없습니다!</p>}
                             {bookList && bookList.map((el, index)=>(
                                 <SwiperSlide key={index}>
                                     <MyBookListItem post={el} state={el.state} className='bookItem'/>
@@ -100,12 +91,16 @@ export default Main
 
 const MainContainer = styled.div`
     .readingBookWrap{
-        padding: 40px 10px;
-        .button{
+        padding: 70px 10px;
+        .readingTop{
             display: flex;
             justify-content: space-between;
+            padding: 20px;
         }
         .swiper{
+            .emptyMsg{
+                padding-left: 40px;
+            }
             .readingBookList{
                 display: grid;
                 grid-template-columns: repeat(4, minmax(25%, auto));   

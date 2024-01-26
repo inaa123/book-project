@@ -77,7 +77,7 @@ const ReviewsContainer = styled.div`
     }
  
     .reviewList{
-        padding: 40px 20px 40px 0px;
+        padding: 40px 30px 20px 0px;
         li{
             display: grid;
             grid-template-columns: repeat(4, minmax(25%, auto));
@@ -85,4 +85,38 @@ const ReviewsContainer = styled.div`
             cursor: pointer;
         }
     }
+
+    
+    @media screen and (max-width: 1024px){
+        .reviewList{
+            li{
+            grid-template-columns: repeat(3, minmax(33%, auto));
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px){
+        .review-top{
+            button{
+                font-size: 14px;
+            }
+        }
+        .reviewList{
+            li{
+            grid-template-columns: repeat(2, minmax(50%, auto));
+            }
+        }
+    }
+
+    @media screen and (max-width: 500px){
+        
+        .reviewList{
+            padding: 40px 20px 0px;
+            li{
+            grid-template-columns: repeat(1, minmax(100%, auto));
+            gap: 20px;
+            }
+        }
+    }
 `
+
