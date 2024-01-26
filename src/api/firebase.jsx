@@ -131,7 +131,6 @@ export async function getAllBooks(userId){
     return get(ref(database, `myBooks/${userId}`))
     .then((snapshot) => {
         if(snapshot.exists()){
-            // console.log(Object.values(snapshot.val())[0].title);
             return Object.values(snapshot.val());
         }
         return[]
@@ -162,42 +161,3 @@ export async function getComments(reviewId){
     })
 }
 
-// 최신도서저장 (관리자,)
-// export async function latestBooks(isbn, image, title, author, publisher, description, pubdate, user,  date){
-
-//     return set(ref(database, `/latestBooks/${isbn}`))
-// }
-
-//추천도서저장(관리자)
-export async function addRecBooks(id, isbn, image, title, author, publisher, description, pubdate, user, date){
-    
-    const postData = {
-        id,
-        isbn,
-        image,
-        title,
-        author,
-        publisher,
-        description,
-        pubdate,
-        user,
-        date
-    }
-    return set(ref(database, `/recBooks/${isbn}`), postData)
-}
-
-export async function getRecBooks(){
-    return get(ref(database, `/recBooks`))
-    .then((snapshot) => {
-        if(snapshot.exists()){
-            return Object.values(snapshot.val());
-        }
-        return []
-    })
-}
-
-
-
-export async function delRecBooks(isbn){
-    return remove(ref(database, `/recBooks/${isbn}`))
-}
