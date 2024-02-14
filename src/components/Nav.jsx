@@ -130,8 +130,11 @@ const HeaderContainer = styled.header`
         }
     }
 
-    @media screen and (max-width: 500px){
+    @media screen and (max-width: 428px){
         nav{
+            .logo{
+                font-size: 18px;
+            }
         }
     }
     
