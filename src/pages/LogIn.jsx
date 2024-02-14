@@ -93,7 +93,7 @@ const LoginContainer = styled.div`
                 font-size: 16px;
                 width : 400px;
                 height: 48px;
-                padding: 0px 50px 0px 40px;
+                padding: 0px 50px 0px 30px;
                 border: solid 1px rgba(0,0,0,0.3);
                 border-radius: 10px;
                 box-sizing: border-box;
@@ -126,5 +126,33 @@ const LoginContainer = styled.div`
     .tempMsg{
         padding-top: 50px;
         font-size: 14px;
+    }
+
+    @media screen and (max-width : 768px){
+        form{
+            .userLogin{
+                input{
+                    width: 380px;
+                }
+            }
+
+        }
+    }
+
+    @media screen and (max-width: 428px){
+        form{
+            .userLogin{
+                input{
+                    width: 300px;
+                }
+            }
+            .btnWrapper{
+                button{
+                    width: 140px;
+                    height: 50px;
+                    font-size: 16px;
+                }
+            }
+        }
     }
 `

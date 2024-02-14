@@ -137,4 +137,27 @@ const SignUpContainer = styled.div`
             letter-spacing: 4px;
         }
     }
+
+    @media screen and (max-width : 768px){
+        form{
+            .signup{
+                input{
+                    width: 380px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 428px){
+        form{
+            .signup{
+                input{
+                    width: 300px;
+                }
+            }
+            button{
+                width: 300px;
+            }
+        }
+    }
 `

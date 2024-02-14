@@ -71,11 +71,9 @@ const HeaderContainer = styled.header`
     }
     nav{
         display: flex;
-        justify-content: space-around;
         max-width : 1200px;
         margin: 0px auto;
         padding : 40px 10%;
-        display: flex;
         justify-content: space-between;
         align-items: center;
         ul{
@@ -110,31 +108,51 @@ const HeaderContainer = styled.header`
                     }
                 }
             }
-            
+
         }
     }
 
     @media screen and (max-width : 768px){
         nav{
             ul{
-                gap: 10px;
+                gap: 30px;
                 font-size: 14px;
             }
-        }
-        .userWrapper{
-            span{
-                .subText{
-                    display: none;
+
+            .logo{
+                font-size: 20px;
+            }
+            
+            .userWrapper{
+                button{
+                    font-size: 12px;
+                }
+                span{
+                    .subText{
+                        display: none;
+                    }
                 }
             }
+            
         }
     }
 
     @media screen and (max-width: 428px){
+        
         nav{
+            ul{
+                gap: 15px;
+                font-size: 12px;
+            }
             .logo{
                 font-size: 18px;
             }
+            .userWrapper{
+                div{
+                    gap: 6px;
+                }
+            }
+
         }
     }
     
