@@ -137,6 +137,28 @@ const SearchForm = styled.div`
         justify-content: center;
     }
 
+    @media screen and (max-width: 768px){
+        .search{
+            gap: 5px;
+            .searchBtn{
+                font-size: 28px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 428px){
+        .search{
+            .searchBtn{
+                font-size: 24px;
+            }
+            .inputWrap{
+                .searchKeyword{
+                    width: 210px;
+                }
+            }
+        }
+    }
+
 `
 const ResultContainer = styled.div`
     position: absolute;
