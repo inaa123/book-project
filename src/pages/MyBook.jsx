@@ -138,4 +138,13 @@ const MyBookContainer = styled.div`
     border-radius: 0;
     background: gray;
 }
+
+@media screen and (max-width: 428px){
+    .mybookTop{
+        button{
+            padding : 10px 14px;
+            font-size: 12px;
+        }
+    }
+}
 `

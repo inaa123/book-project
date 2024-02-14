@@ -29,6 +29,8 @@ export default MyBookStateCategory
 const CategoryContainer = styled.div`
     display: flex;
     align-items: center;
+
+    
 `
 
 const Category = styled.div`
@@ -40,5 +42,9 @@ const Category = styled.div`
     border-radius: 30px;
     background : green;
     color: white;
+  }
+
+  @media screen and (max-width: 428px){
+    font-size: 14px;
   }
 `

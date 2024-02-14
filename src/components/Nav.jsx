@@ -115,7 +115,7 @@ const HeaderContainer = styled.header`
     @media screen and (max-width : 768px){
         nav{
             ul{
-                // gap: 30px;
+                gap: 30px;
                 font-size: 14px;
             }
 

@@ -84,6 +84,12 @@ const GlobalStyle = createGlobalStyle`
         margin: 100px auto;
         padding : 100px 20px;
     }
+
+    @media screen and (max-width: 768px){
+        .container{
+            margin: 50px auto;
+        }
+    }
 `
 
 

@@ -188,4 +188,51 @@ const DetailReviewContainer = styled.div`
             }
         }
     }
+
+    @media screen and (max-width: 768px){
+        .reviewContent{
+            padding: 20px 0px;
+            gap: 10px;
+            p{
+                padding-top: 20px;
+                font-size: 20px;
+            }
+            .reviewImg{
+                width: 160px;
+                height: auto;
+            }
+        }
+        .commentWrap{
+            .inputComment{
+                gap: 10px;
+                input{
+                    width: 680px;
+                }
+                button{
+                    padding: 10px;
+                    width: 90px;
+                    margin-right: 10px;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 428px){
+        .commentWrap{
+            .inputComment{
+                input{
+                    width: 400px;
+                }
+                button{
+                    padding: 10px;
+                    width: 90px;
+                    margin-right: 10px;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+
 `

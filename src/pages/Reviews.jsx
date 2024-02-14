@@ -118,5 +118,17 @@ const ReviewsContainer = styled.div`
             }
         }
     }
+
+    @media screen and (max-width: 428px){
+            .review-top{
+                .subText{
+                    font-size: 14px;
+                }
+                button{
+                    padding : 10px 14px;
+                    font-size: 12px;
+                }
+            }
+    }
 `
 

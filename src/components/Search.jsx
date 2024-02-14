@@ -140,18 +140,13 @@ const SearchForm = styled.div`
     @media screen and (max-width: 768px){
         .search{
             gap: 5px;
-            .inputWrap{
-                .searchKeyword{
-                    width: 210px;
-                }
-            }
             .searchBtn{
                 font-size: 28px;
             }
         }
     }
 
-    @media screen and (max-width: 428px){
+    @media screen and (max-width: 440px){
         .search{
             .searchBtn{
                 font-size: 24px;

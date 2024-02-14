@@ -79,9 +79,14 @@ function DetailBook() {
                     </div>
                     <div className='detailContent'>
                         <div className='bookData'>
-                            
-                            <p><span className='author'>저자</span>{author}</p>
-                            <p><span>출판사</span>{publisher}</p>
+                            <div className='book-author-pub'>
+                                <p>저자</p>
+                                <p>출판사</p>
+                            </div>
+                            <div className='bookData-author-pub'>
+                                <p>{author}</p>
+                                <p>{publisher}</p>
+                            </div>
                         </div>
                         {user && (
                         <>
@@ -146,17 +151,20 @@ const DetailPage = styled.div`
             gap: 10px;
             margin-top: 80px;
             .bookData{
-                margin-bottom: 50px;
-                p{
-                    font-size: 20px;
-                    margin-bottom: 20px;
-                    span{
-                        font-size: 14px;
-                        margin-right: 30px;
-                    }
-                    .author{
-                        margin-right: 40px;
-                    }
+                display: flex;
+                gap: 30px;
+                font-size: 20px;
+                padding-bottom: 20px;
+                .book-author-pub{
+                    display:flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    padding-bottom:
+                }
+                .bookData-author-pub{
+                    display:flex;
+                    flex-direction: column;
+                    gap: 20px;
                 }
             }
             .selectBox{
@@ -223,19 +231,21 @@ const DetailPage = styled.div`
             .detailContent{
                 margin-top: 10px;
                 .bookData{
-                    margin-bottom: 0px;
+                    font-size: 16px;
+                    align-items: center;
+                    justify-content: center;
                 }
                 .btnWrapper{
                     .mybookBtn{
                         button{
                             font-size: 34px;
-                            p{display:none}
+                            p{font-size: 18px;}
                         }
                     }
                     .reviewBtn{
                         button{
                             font-size: 34px;
-                            p{display:none}
+                            p{font-size: 18px;}
                         }
                     }
                 }
@@ -246,4 +256,25 @@ const DetailPage = styled.div`
             
         }
     }
+
+    @media screen and (max-width: 428px) {
+        .content{
+            .detailContent{
+                .btnWrapper{
+                    .mybookBtn{
+                        button{
+                            p{font-size: 14px;}
+                        }
+                    }
+                    .reviewBtn{
+                        button{
+                            p{font-size: 14px;}
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+
 `
