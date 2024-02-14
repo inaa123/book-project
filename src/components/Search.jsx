@@ -67,7 +67,7 @@ function Search() {
                             type='text'
                             className='searchKeyword'
                             value={keywords}
-                            placeholder='검색할 책을 입력해주세요.'
+                            placeholder='책을 검색하세요.'
                             onChange={bookSearchKeyword}
                         />
                         {showClearBtn &&

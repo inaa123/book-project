@@ -46,6 +46,7 @@ function WriteReview() {
                         value={bookText}
                         maxLength={30}
                         onChange={onChangeHandler}
+                        placeholder='한 줄 리뷰를 적어주세요.'
                     />
                     <p className='textNum'>
                         <span>{textCount}</span>
