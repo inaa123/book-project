@@ -90,16 +90,6 @@ function DetailBook() {
                         </div>
                         {user && (
                         <>
-                        <div className='btnWrapper'>
-                            <div className='mybookBtn'>
-                                <button onClick={onClickEvent} >
-                                <LuBookPlus /><p>기록함추가</p></button>
-                            </div>
-                            <div className='reviewBtn'>
-                                <button onClick={onWriteReview}>
-                                <FaPaperPlane /><p>한마디</p></button>
-                            </div>
-                        </div>
                         <div className='selectBox'>
                             <select value={selected} onChange={handleSelect}>
                                 <option value="" disabled>상태</option>
@@ -111,6 +101,17 @@ function DetailBook() {
                                 {!selected && isClick && <p>상태를 선택하세요!</p>}
                             </div>
                         </div>
+                        <div className='btnWrapper'>
+                            <div className='mybookBtn'>
+                                <button onClick={onClickEvent} >
+                                <LuBookPlus /><p>기록함추가</p></button>
+                            </div>
+                            <div className='reviewBtn'>
+                                <button onClick={onWriteReview}>
+                                <FaPaperPlane /><p>한마디</p></button>
+                            </div>
+                        </div>
+                        
                         </>
                         )}
                     </div>
